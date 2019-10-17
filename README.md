@@ -124,7 +124,7 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 ![](/img/7.result.png)
 
 
-## Removing TrojanHorse:
+## Removing TechNowLogger:
 
    * Go to start, type regedit and run the first program, this will open the registry editor.
    * Navigate to the following path Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run There should be an entry called svchost, right click this entry and select Delete.
