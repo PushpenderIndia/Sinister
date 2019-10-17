@@ -144,8 +144,8 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 
 ## TODO
 
-- [x] Add New features
-- [x] Contribute GUI Version
+- [ ] Add New features
+- [ ] Contribute GUI Version
 
 ## Contact
 
