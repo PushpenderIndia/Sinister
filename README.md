@@ -39,7 +39,6 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Undetectable
 - [x] Persistence
 - [x] Sends Screenshot of Victim PC's Screen via email
-- [x] Give Full Meterpreter Access to Attacker
 - [x] Creates Executable Binary With Zero Dependencies
 - [x] Create less size ~ 5mb payload with advance functionality
 
