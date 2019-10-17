@@ -110,7 +110,7 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Building Finished
 ![](/img/3.building_finished.png)
 
-#### When RAT runs, it adds Registry to become persistence
+#### When Keylogger runs, it adds Registry to become persistence
 ![](/img/4.added_registry_for_persistence.png)
 
 #### Makes copy of itself and saved it inside Roaming
@@ -119,9 +119,17 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Typing Random text to test Keylogger
 ![](/img/6.randomText-to-test-keylogger.png)
 
-#### Report sended by TechNowLogger
+#### Report 1 sended by TechNowLogger
 ![](/img/7.result.png)
 
+#### Login facebook ~ Victim
+![](/img/8.testing-keylogger.png)
+
+#### Report 2 - Keylogs of facebook Credentials
+![](/img/9.report-1.png)
+
+#### Report 3 - With Screenshots
+![](/img/10.report-2.png)
 
 ## Removing TechNowLogger:
 
