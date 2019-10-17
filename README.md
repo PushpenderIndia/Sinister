@@ -15,7 +15,10 @@ TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & s
     <a href="https://github.com/Technowlogy-Pushpender/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
   </a>
-    ![](/img/hacker-gif.gif)
+</p>
+
+<p align="center">
+  <img src="https://github.com/Technowlogy-Pushpender/technowlogger/blob/master/img/hacker-gif.gif" alt="Hacker GIF"/>
 </p>
              
                         This small python script can do really awesome work.
