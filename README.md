@@ -138,6 +138,15 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
    * Go to your user path > AppData > Roaming, you’ll see a file named “svchost.exe”, this is the RAT, right click > Delete.
    * Restart the System.
 
+## Contribute
+
+* All Contributors are welcome, this repo needs contributors who will improve this tool to make it best.
+
+## TODO
+
+- [x] Add New features
+- [x] Contribute GUI Version
+
 ## Contact
 
-singhpushpender250@gmail.com or Contact Us
+singhpushpender250@gmail.com or ![Contact Us](https://technowlogy.tk/contact-us)
