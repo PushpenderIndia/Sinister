@@ -1,0 +1,14 @@
+pynput
+threading
+smtplib
+os
+shutil
+subprocess
+sys
+stat
+platform
+getpass
+time
+argparse
+pyfiglet
+mss
