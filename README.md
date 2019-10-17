@@ -119,7 +119,7 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Typing Random text to test Keylogger
 ![](/img/6.randomText-to-test-keylogger.png)
 
-#### Report sended by RAT
+#### Report sended by TechNowLogger
 ![](/img/7.result.png)
 
 
