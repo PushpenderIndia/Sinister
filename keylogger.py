@@ -10,6 +10,7 @@ import stat
 import platform
 import getpass
 import time
+import tempfile
 from mss import mss
 # 15 to 18 lines for "send_mail_with_attachment()" function
 #==============================================================

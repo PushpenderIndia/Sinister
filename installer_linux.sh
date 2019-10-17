@@ -23,4 +23,5 @@ sudo pip install getpass
 sudo pip install time
 sudo pip install pyfiglet
 sudo pip install mss
+sudo pip install tempfile
 
