@@ -15,6 +15,7 @@ TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & s
     <a href="https://github.com/Technowlogy-Pushpender/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
   </a>
+    ![](/img/hacker-gif.gif)
 </p>
              
                         This small python script can do really awesome work.
@@ -82,7 +83,7 @@ $ cd technowlogger
 # Installing dependencies
 $ python -m pip install -r requirements.txt
 
-# Open paygen.py in Text editor and Configure Line 7 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
+# Open technowgen.py in Text editor and Configure Line 7 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
 
 # Getting Help Menu
 $ python technowgen.py --help
@@ -98,16 +99,16 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Getting Help
 ![](/img/1.help.png)
 
-#### Running paygen.py Script
+#### Running technowgen.py Script
 ![](/img/2.running_script.png)
 
 #### Building Finished
-![](/img/3.building_finished)
+![](/img/3.building_finished.png)
 
 #### When RAT runs, it adds Registry to become persistence
 ![](/img/4.added_registry_for_persistence.png)
 
-#### Makes copy of itself and saved it inside Roming
+#### Makes copy of itself and saved it inside Roaming
 ![](/img/5.rat_saved_roaming.png)
 
 #### Typing Random text to test Keylogger
@@ -115,3 +116,14 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 
 #### Report sended by RAT
 ![](/img/7.result.png)
+
+## Removing TrojanHorse:
+
+   * Go to start, type regedit and run the first program, this will open the registry editor.
+   * Navigate to the following path Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run There should be an entry called svchost, right click this entry and select Delete.
+   * Go to your user path > AppData > Roaming, you’ll see a file named “svchost.exe”, this is the RAT, right click > Delete.
+   * Restart the System.
+
+## Contact
+
+singhpushpender250@gmail.com or Contact Us
