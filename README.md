@@ -1,5 +1,6 @@
-# Technowlogger
-TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & screenshot via email with other juicy target info written in Python 3.
+<p align="center">
+  <img src="https://github.com/Technowlogy-Pushpender/technowlogger/blob/master/img/technowlogger-logo.png" alt="TechNowLogger Logo" width=200 height=200/>
+</p>
 
 <h1 align="center">TechNowHorse</h1>
 <p align="center">
@@ -18,10 +19,12 @@ TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & s
 </p>
 
 <p align="center">
-  <img src="https://github.com/Technowlogy-Pushpender/technowlogger/blob/master/img/hacker-gif.gif" alt="Hacker GIF"/>
+  <img src="https://github.com/Technowlogy-Pushpender/technowlogger/blob/master/img/hacker-gif.gif" alt="Hacker GIF" width=200 height=200/>
 </p>
              
                         This small python script can do really awesome work.
+
+TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & screenshot via email with other juicy target info written in Python 3.
 
 ## Disclaimer
 <p align="center">
