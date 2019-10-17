@@ -123,6 +123,7 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Report sended by RAT
 ![](/img/7.result.png)
 
+
 ## Removing TrojanHorse:
 
    * Go to start, type regedit and run the first program, this will open the registry editor.
