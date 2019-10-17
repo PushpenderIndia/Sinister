@@ -111,10 +111,10 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 ![](/img/3.building_finished.png)
 
 #### When Keylogger runs, it adds Registry to become persistence
-![](/img/4.added_registry_for_persistence.png)
+![](/img/4.keylogger_added_registry_for_persistence.png)
 
 #### Makes copy of itself and saved it inside Roaming
-![](/img/5.rat_saved_roaming.png)
+![](/img/5.keylogger_saved_roaming.png)
 
 #### Typing Random text to test Keylogger
 ![](/img/6.randomText-to-test-keylogger.png)
