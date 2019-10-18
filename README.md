@@ -2,7 +2,7 @@
   <img src="https://github.com/Technowlogy-Pushpender/technowlogger/blob/master/img/technowlogger-logo.png" alt="TechNowLogger Logo" width=200 height=200/>
 </p>
 
-<h1 align="center">TechNowHorse</h1>
+<h1 align="center">TechNowLogger</h1>
 <p align="center">
     <a href="https://python.org">
     <img src="https://img.shields.io/badge/Python-3.7-green.svg">
@@ -149,4 +149,4 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 
 ## Contact
 
-singhpushpender250@gmail.com or ![Contact Us](https://technowlogy.tk/contact-us)
+singhpushpender250@gmail.com or <a href="https://technowlogy.tk/contact-us">Contact Us</a>
