@@ -131,12 +131,36 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 #### Report 3 - With Screenshots
 ![](/img/10.report-2.png)
 
-## Removing TechNowLogger:
+## Removing TechNowLogger in Windows:
+
+#### Method 1:
 
    * Go to start, type regedit and run the first program, this will open the registry editor.
    * Navigate to the following path Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run There should be an entry called svchost, right click this entry and select Delete.
    * Go to your user path > AppData > Roaming, you’ll see a file named “svchost.exe”, this is the RAT, right click > Delete.
    * Restart the System.
+
+#### Method 2:
+   * Run "RemoveTechnowLogger.bat" in Infected System and then restart the PC to stop the current Running Evil File.
+
+
+
+## Removing TechNowLogger in Linux:
+
+   * Open Autostart file with any text editor,
+     ****Autostart File Path: ~/.config/autostart/xinput.desktop****
+   * Remove these 5 lines:
+   
+            [Desktop Entry]
+            Type=Application
+            X-GNOME-Autostart-enabled=true
+            Name=Xinput
+            Exec="destination_file_name"
+        
+   * Note: **destination_file_name** is that name of evil_file which you gave 
+      to your Keylogger using -o parameter
+   * Reboot your system and then delete the evil file stored this this below path
+   * Destination Path, where Keylogger is stored : **~/.config/xnput**
 
 ## Contribute
 
