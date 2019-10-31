@@ -41,6 +41,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Sends Screenshot of Victim PC's Screen via email
 - [x] Creates Executable Binary With Zero Dependencies
 - [x] Create less size ~ 5mb payload with advance functionality
+- [x] Ofusticate the Payload before Generating it, hence Bypassing few more antivirus
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
@@ -96,6 +97,11 @@ $ python technowgen.py --help
 # Making Payload/RAT
 $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name
 ```
+
+## How to Update
+
+* Run updater.py to Update Autmatically or Download the latest Zip from this GitHub repo
+* Note: Git Must be Installed in order to use updater.py
 
 ## Note:- Evil File will be saved inside dist/ folder, inside technowlogger/ folder
 
