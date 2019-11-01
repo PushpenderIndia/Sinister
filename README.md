@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
   <a href="https://github.com/Technowlogy-Pushpender/technowhorse/releases">
-    <img src="https://img.shields.io/badge/Release-1.1-blue.svg">
+    <img src="https://img.shields.io/badge/Release-1.2-blue.svg">
   </a>
     <a href="https://github.com/Technowlogy-Pushpender/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
@@ -42,6 +42,9 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Creates Executable Binary With Zero Dependencies
 - [x] Create less size ~ 5mb payload with advance functionality
 - [x] Ofusticate the Payload before Generating it, hence Bypassing few more antivirus
+- [x] Generated Payload is Encryted with base64, hence makes extremely difficult to reverse engineer the payload
+- [x] Function to Kill Antivirus on Victim PC and tries to disable the security
+- [x] Awesome Colourful Interface to generate payload
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
@@ -105,7 +108,12 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 
 ## Note:- Evil File will be saved inside dist/ folder, inside technowlogger/ folder
 
-## Screenshots:
+## New Screenshots:
+
+![](/img/1.version_1.2.png)
+![](/img/2.version_1.2.png)
+
+## ~Old Screenshots:
 
 #### Getting Help
 ![](/img/1.help.png)
