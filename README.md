@@ -45,6 +45,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Generated Payload is Encryted with base64, hence makes extremely difficult to reverse engineer the payload
 - [x] Function to Kill Antivirus on Victim PC and tries to disable the security
 - [x] Awesome Colourful Interface to generate payload
+- [x] On Attacker Side: While Creating Payload, Script Automatically Detects Missing Dependencies & Installs Them
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
