@@ -198,3 +198,11 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 ## Contact
 
 singhpushpender250@gmail.com or <a href="https://technowlogy.tk/contact-us">Contact Us</a>
+
+## Save a Hacker from starvation 
+![](/img/request.jpg)
+
+- [ ] PayPal Me, Even 1 dollar of donation would be a great help :)
+- [ ] PayPal Address: PayPal.me/anonyindia
+
+## More Features Coming Soon...
