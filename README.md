@@ -60,8 +60,8 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 
 ## How To Use in Linux
 ```bash
-# Install dependencies 
-$ Install latest python 3.x
+# Navigate to the /opt directory (optional)
+$ cd /opt/
 
 # Clone this repository
 $ git clone https://github.com/Technowlogy-Pushpender/technowlogger.git
@@ -70,7 +70,7 @@ $ git clone https://github.com/Technowlogy-Pushpender/technowlogger.git
 $ cd technowlogger
 
 # Installing dependencies
-$ python -m pip install -r requirements.txt
+$ bash installer_linux.sh
 
 $ chmod +x paygen.py
 $ ./technowgen.py  --help    or   python technowgen.py --help
