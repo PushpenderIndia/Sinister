@@ -115,10 +115,10 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file
 
 
 #### Getting Help
-![](/img/1.version_1.2.PNG)
+![](/img/1.version_1.3.PNG)
 
 #### Generating payload
-![](/img/2.version_1.2.PNG)
+![](/img/2.version_1.3.PNG)
 
 #### Getting report
 ![](/img/3.version_1.2.PNG)
