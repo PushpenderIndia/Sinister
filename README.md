@@ -49,6 +49,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Distinguish Log Data on the Basics of Active Window Name  **(Check v1.3 Image for Better Understanding)**
 - [x] Able to add custom Icon to evil file **(New Argument is Added in v1.3 & onward version)**
 - [x] **Built-in Binder** which can bind Keylogger to **Any File** [.pdf, .txt, .exe etc], Running legitimate file on front end & evil codes in back-end as a service. **(New Argument is Added in v1.4 & onward version)**
+- [x] Checks for **Already Running Instance** on System, If running instance found, then only legitimate file is executed [**Multiple Instance Prohibiter** to avoid Same Muliple Logs Email].
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
