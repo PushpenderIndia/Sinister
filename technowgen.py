@@ -114,6 +114,11 @@ if __name__ == '__main__':
         print(f"\t\t{YELLOW}Author: {GREEN}Pushpender | {YELLOW}Website: {GREEN}technowlogy.tk\n")
 
         arguments = get_arguments()       
+        
+        if arguments.icon == None:
+            arguments.icon = input(f'{RED}[!] Please Specify Icon Path {WHITE}[{GREEN}LEAVE BLANK to SET icon/exe.ico as icon{WHITE}] : ')
+            if arguments.icon == "":
+                arguments.icon = "icon/exe.ico"        
 
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
         print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
