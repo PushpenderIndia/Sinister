@@ -6,10 +6,14 @@ import os
 import banners
 import shutil
 from essential_generators import DocumentGenerator
+import platform
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
-WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
+if platform.system() == 'Windows':
+    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
+elif platform.system() == 'Linux':
+    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37/Scripts/pyinstaller.exe")
 
 def get_arguments():
     parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.4')
