@@ -218,6 +218,6 @@ singhpushpender250@gmail.com or <a href="https://technowlogy.tk/contact-us">Cont
 ![](/img/request.jpg)
 
 - [ ] PayPal Me, Even 1 dollar of donation would be a great help :)
-- [ ] PayPal Address: PayPal.me/anonyindia
+- [ ] PayPal Address: <a href="https://paypal.me/anonyindia">PayPal.me/anonyindia</a>
 
 ## More Features Coming Soon...
