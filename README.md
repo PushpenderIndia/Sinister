@@ -128,7 +128,7 @@ Note: You can also use our custom icons from the icon folder, just use them like
 | -t TIME_PERSISTENT | --persistence TIME_PERSISTENT | Becoming Persistence After __ seconds. default=10 |
 |  -w | --windows | Generate a Windows executable. |
 |  -l | --linux   | Generate a Linux executable. |
-| -b BIND | --bind BIND | AutoBinder : Specify Path of Legitimate file. |
+| -b file.txt | --bind LEGITIMATE_FILE_PATH.pdf | AutoBinder : Specify Path of Legitimate file. |
 #### Note : Either **-w/--windows** or  **-l/--linux** must be specified 
 
 * Required Arguments
