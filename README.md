@@ -118,6 +118,28 @@ Note: You can also use our custom icons from the icon folder, just use them like
 
 ## Note:- Evil File will be saved inside dist/ folder, inside technowlogger/ folder
 
+## Available Arguments 
+* Optional Arguments
+
+| Short Hand  | Full Hand | Description |
+| ----------  | --------- | ----------- |
+| -h          | --help    | show this help message and exit |
+| -i INTERVAL | --interval INTERVAL | Time between reports in seconds. default=120|
+| -t TIME_PERSISTENT | --persistence TIME_PERSISTENT | Becoming Persistence After __ seconds. default=10 |
+|  -w | --windows | Generate a Windows executable. |
+|  -l | --linux   | Generate a Linux executable. |
+| -b BIND | --bind BIND | AutoBinder : Specify Path of Legitimate file. |
+#### Note : Either **-w/--windows** or  **-l/--linux** must be specified 
+
+* Required Arguments
+
+| Short Hand  | Full Hand | Description |
+| ----------  | --------- | ----------- |
+|             | --icon ICON   | Specify Icon Path, Icon of Evil File [Note : Must Be .ico] |
+| -e EMAIL    | --email EMAIL | Email address to send reports to. |
+| -p PASSWORD | --password PASSWORD | Password for the email address given in the -e argument. |
+| -o OUT      | --out OUT    | Output file name.|
+
 ## New Screenshots:
 
 
