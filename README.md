@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
   <a href="https://github.com/Technowlogy-Pushpender/technowhorse/releases">
-    <img src="https://img.shields.io/badge/Release-1.5-blue.svg">
+    <img src="https://img.shields.io/badge/Release-1.6-blue.svg">
   </a>
     <a href="https://github.com/Technowlogy-Pushpender/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
@@ -51,6 +51,13 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] **Built-in Binder** which can bind Keylogger to **Any File** [.pdf, .txt, .exe etc], Running legitimate file on front end & evil codes in back-end as a service. **(New Argument is Added in v1.4 & onward version)**
 - [x] Checks for **Already Running Instance** on System, If running instance found, then only legitimate file is executed [**Multiple Instance Prohibiter** to avoid Same Muliple Logs Email].
 - [x] Attacker can Create/Compile for Both **Windows/Linux OS** Using Linux System, But Can only Create/Compile **Windows** Executable using Windows Machine
+- [x] Retrieves Saved Passwords from victim System and sends it to Attacker.
+
+| Supported Retrives, Tries to Retrive Saved Passwords from : |
+| ----------------------------------------------------------- |
+| Chrome Browser |
+| WiFi |
+#### Note: Custom Stealer is Coded, does not relies on LaZagne
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
@@ -155,6 +162,14 @@ Note: You can also use our custom icons from the icon folder, just use them like
 #### Log Data is Distinguished on The Basics of Active Window Name ~ Feature Added to v1.3 & Onward
 ![](/img/10.distinguish_log_data_v1.3.PNG)
 
+#### Retrives & Sends Saved Chrome Browser's Password 
+* Note: In order to use this feature, specify **-s or --steal-password** while creating keylogger
+![](/img/saved_chrome_browser_password.PNG)
+
+#### Retrives & Sends Saved WIFI Password 
+* Note: In order to use this feature, specify **-s or --steal-password** while creating keylogger
+![](/img/saved_wifi_password.PNG)
+ 	
 ### Also Refer These Old Images
 
 ## ~Old Screenshots:
