@@ -135,14 +135,15 @@ Note: You can also use our custom icons from the icon folder, just use them like
 | -t TIME_PERSISTENT | --persistence TIME_PERSISTENT | Becoming Persistence After __ seconds. default=10 |
 |  -w | --windows | Generate a Windows executable. |
 |  -l | --linux   | Generate a Linux executable. |
-| -b file.txt | --bind LEGITIMATE_FILE_PATH.pdf | AutoBinder : Specify Path of Legitimate file. |
+|  -s | --steal-password | Steal Saved Password from Victim Machine [**Supported OS : Windows**] |
+| -b file.txt | --bind LEGITIMATE_FILE_PATH.pdf | AutoBinder : Specify Path of Legitimate file. [**Supported OS : Windows**] |
 #### Note : Either **-w/--windows** or  **-l/--linux** must be specified 
 
 * Required Arguments
 
 | Short Hand  | Full Hand | Description |
 | ----------  | --------- | ----------- |
-|             | --icon ICON   | Specify Icon Path, Icon of Evil File [Note : Must Be .ico] |
+|             | --icon ICON   | Specify Icon Path, Icon of Evil File [**Note : Must Be .ico**] |
 | -e EMAIL    | --email EMAIL | Email address to send reports to. |
 | -p PASSWORD | --password PASSWORD | Password for the email address given in the -e argument. |
 | -o OUT      | --out OUT    | Output file name.|
