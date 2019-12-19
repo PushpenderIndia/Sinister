@@ -203,7 +203,12 @@ def exit_greet():
     quit()
     
 if __name__ == '__main__':
-    os.system('rm -Rf dist')
+    try:    
+        os.system('rm -Rf dist')
+    except Exception:
+        build = os.getcwd() + "\\build"
+        shutil.rmtree(build)
+        
     try:
         print(banners.get_banner())
         print(f"\t\t{YELLOW}Author: {GREEN}Pushpender | {YELLOW}Website: {GREEN}technowlogy.tk\n")
