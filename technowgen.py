@@ -203,9 +203,9 @@ def exit_greet():
     quit()
     
 if __name__ == '__main__':
-    try:    
+    if platform.system() == 'Windows':     
         os.system('rm -Rf dist')
-    except Exception:
+    if platform.system() == 'Linux': 
         build = os.getcwd() + "\\build"
         shutil.rmtree(build)
         
