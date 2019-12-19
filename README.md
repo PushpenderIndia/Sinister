@@ -205,6 +205,22 @@ Note: You can also use our custom icons from the icon folder, just use them like
 #### Report 3 - With Screenshots
 ![](/img/10.report-2.png)
 
+## Debug Issues
+
+Try to Run **Offline Keylogger** in order to test Offline Key logs capturing & Debug keylogger issues by running these commands:
+
+Run **test_key.py** In both the modes [**Compiled & Raw**] and figure out whats the error
+
+Run it like this : `python test_key.py`
+
+Also Compile it like this:
+`pyinstaller --onefile test_key.py --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard`
+
+After running it, Start typing something,
+Result will be displayed on the Command prompt after every 10 seconds
+
+**Offline keylogger's files are present in TestKeylogger Folder**
+
 ## Removing TechNowLogger in Windows:
 
 #### Method 1:
