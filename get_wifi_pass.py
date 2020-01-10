@@ -6,14 +6,14 @@ class GetWifiPassword:
         self.result = ""
         
     def start(self):
-        networks = subprocess.check_output(self.command, shell=True)
+        networks = subprocess.check_output(self.command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
         networks = networks.decode(encoding="utf-8", errors="strict")
         network_names_list = re.findall("(?:Profile\s*:\s)(.*)", networks) 
 
         for network_name in network_names_list:
             try:
                 command = "netsh wlan show profile " + network_name + " key=clear"
-                current_result = subprocess.check_output(command, shell=True)
+                current_result = subprocess.check_output(command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
                 current_result = current_result.decode(encoding="utf-8", errors="strict")        
                 
                 ssid = re.findall("(?:SSID name\s*:\s)(.*)", str(current_result))
