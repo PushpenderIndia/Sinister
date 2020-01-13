@@ -206,8 +206,11 @@ if __name__ == '__main__':
     if platform.system() == 'Windows':     
         os.system('rm -Rf dist')
     if platform.system() == 'Linux': 
-        build = os.getcwd() + "\\build"
-        shutil.rmtree(build)
+        dist_folder = os.getcwd() + "/dist"
+        try:
+            shutil.rmtree(dist_folder)
+        except Exception:
+            pass
         
     try:
         print(banners.get_banner())
