@@ -1,4 +1,4 @@
-sudo dpkg --add-architecture i386 && apt-get update && apt-get install wine32 python3-pip pyinstaller -y
+sudo dpkg --add-architecture i386 && apt-get update && apt-get install wine32 python3-pip pyinstaller 
 #Downloading Required Executables
 wget "https://www.python.org/ftp/python/3.7.4/python-3.7.4.exe" 
 #Installing Executables in Wine
