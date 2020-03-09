@@ -266,12 +266,13 @@ Result will be displayed on the Command prompt after every 10 seconds
 
 ## Contact
 
-singhpushpender250@gmail.com or <a href="https://technowlogy.tk/contact-us">Contact Us</a>
+singhpushpender250@gmail.com 
 
 ## Save a Hacker from starvation 
 ![](/img/request.jpg)
 
-- [ ] PayPal Me, Even 1 dollar of donation would be a great help :)
-- [ ] PayPal Address: <a href="https://paypal.me/anonyindia">PayPal.me/anonyindia</a>
+- [ ] paypal Me, Even 1 dollar of donation would be a great help :)
+- [ ] paypal Address: <a href="https://paypal.me/anonyindia">https://paypal.me/anonyindia</a>
+- [ ] paypal Email Address: singhpushpender250@gmail.com
 
 ## More Features Coming Soon...
