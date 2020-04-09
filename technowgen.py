@@ -224,6 +224,8 @@ if __name__ == '__main__':
             shutil.rmtree(dist_folder)
         except Exception:
             pass
+        if not os.geteuid() == 0:
+            sys.exit('Technowlogger must be run as root')        
         
     try:
         print(banners.get_banner())
