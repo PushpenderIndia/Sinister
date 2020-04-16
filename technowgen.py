@@ -36,11 +36,13 @@ def get_arguments():
     required_arguments.add_argument("-o", "--out", dest="out", help="Output file name.", required=True)
     return parser.parse_args()
 
-def get_python_path():
+def get_python_pyinstaller_path():
     python_path = subprocess.check_output("where python", shell=True)
     python_path = str(python_path).split('\'')[1]
     python_path = python_path.replace("\\n", "")
     python_path = python_path.replace("\\r", "")
+    python_path = python_path.replace("\\\\", "/")
+    python_path = python_path.replace("python.exe", "Scripts/pyinstaller.exe")
 
     return python_path
 
@@ -247,7 +249,7 @@ if __name__ == '__main__':
                 arguments.icon = "icon/exe.ico"      
 
         if not os.path.exists(WINDOWS_PYTHON_PYINSTALLER_PATH) and arguments.windows:
-            WINDOWS_PYTHON_PYINSTALLER_PATH = get_python_path()
+            WINDOWS_PYTHON_PYINSTALLER_PATH = get_python_pyinstaller_path()
 
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
         print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
