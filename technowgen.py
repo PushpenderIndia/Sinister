@@ -36,6 +36,14 @@ def get_arguments():
     required_arguments.add_argument("-o", "--out", dest="out", help="Output file name.", required=True)
     return parser.parse_args()
 
+def get_python_path():
+    python_path = subprocess.check_output("where python", shell=True)
+    python_path = str(python_path).split('\'')[1]
+    python_path = python_path.replace("\\n", "")
+    python_path = python_path.replace("\\r", "")
+
+    return python_path
+
 def check_dependencies():
     print(f"{YELLOW}\n[*] Checking Dependencies...")
     try:
@@ -239,11 +247,7 @@ if __name__ == '__main__':
                 arguments.icon = "icon/exe.ico"      
 
         if not os.path.exists(WINDOWS_PYTHON_PYINSTALLER_PATH) and arguments.windows:
-            print(f"{RED}[!] Default Compiler Path Doesn't Exist {WHITE}")
-            print(f"\tDefault Pyinstaller Path In Windows: C:/Python37-32/Scripts/pyinstaller.exe")
-            print(f"\tDefault Pyinstaller Path In Linux: ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
-            WINDOWS_PYTHON_PYINSTALLER_PATH = input(f"{YELLOW}[?] Please Enter pyinstaller.exe Path:{WHITE} ")
-            WINDOWS_PYTHON_PYINSTALLER_PATH = WINDOWS_PYTHON_PYINSTALLER_PATH.replace("\\", "/")
+            WINDOWS_PYTHON_PYINSTALLER_PATH = get_python_path()
 
         print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
         print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
