@@ -226,16 +226,17 @@ def exit_greet():
     quit()
     
 if __name__ == '__main__':
-    if platform.system() == 'Windows':     
+    if platform.system() == 'Linux':     
         os.system('rm -Rf dist')
-    if platform.system() == 'Linux': 
+        if not os.geteuid() == 0:
+            sys.exit('Technowlogger must be run as root')         
+    if platform.system() == 'Windows': 
         dist_folder = os.getcwd() + "/dist"
         try:
             shutil.rmtree(dist_folder)
         except Exception:
             pass
-        if not os.geteuid() == 0:
-            sys.exit('Technowlogger must be run as root')        
+       
         
     try:
         print(banners.get_banner())
