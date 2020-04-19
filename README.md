@@ -70,6 +70,8 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 | User Name |
 | Public IPv4 |
 
+- [x] If your payload is unable to execute, then specify --debug to run exe on foreground with CMD
+
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
 
@@ -153,6 +155,7 @@ Note: You can also use our custom icons from the icon folder, just use them like
 |  -l | --linux   | Generate a Linux executable. |
 |  -s | --steal-password | Steal Saved Password from Victim Machine [**Supported OS : Windows**] |
 | -b file.txt | --bind LEGITIMATE_FILE_PATH.pdf | AutoBinder : Specify Path of Legitimate file. [**Supported OS : Windows**] |
+| -d | --debug | Payload Will Run In Foreground with CMD Window, To get Appropriate Execution Error |
 #### Note : Either **-w/--windows** or  **-l/--linux** must be specified 
 
 * Required Arguments
@@ -236,6 +239,13 @@ After running it, Start typing something,
 Result will be displayed on the Command prompt after every 10 seconds
 
 **Offline keylogger's files are present in TestKeylogger Folder**
+
+* If payload is unable to execute on victim's system
+```
+1. Create a new payload with --debug flag
+2. Run payload exe throught cmd [Don't Execute Payload By Double Clicking It]
+3. It will now give more appropriate error in CMD, just put that issue in Issue Section
+```
 
 ## Removing TechNowLogger in Windows:
 
