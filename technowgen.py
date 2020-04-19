@@ -27,7 +27,7 @@ def get_arguments():
     parser.add_argument("-l", "--linux", dest="linux", help="Generate a Linux executable.", action='store_true')
     parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{RED}Supported OS : Windows{YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
-    parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Not Run In Background, Will Open A Cmd When Payload is Executed", action='store_true')
+    parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Run In Foreground with CMD Window, To get Appropriate Execution Error", action='store_true')
     
     
     required_arguments = parser.add_argument_group(f'{RED}Required Arguments{GREEN}')
