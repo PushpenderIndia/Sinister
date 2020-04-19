@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
   <a href="https://github.com/Technowlogy-Pushpender/technowhorse/releases">
-    <img src="https://img.shields.io/badge/Release-1.7-blue.svg">
+    <img src="https://img.shields.io/badge/Release-1.8-blue.svg">
   </a>
     <a href="https://github.com/Technowlogy-Pushpender/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
@@ -53,11 +53,22 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Attacker can Create/Compile for Both **Windows/Linux OS** Using Linux System, But Can only Create/Compile **Windows** Executable using Windows Machine
 - [x] Retrieves Saved Passwords from victim System and sends it to Attacker.
 
-| Supported Retrives, Tries to Retrive Saved Passwords from : |
+| Built-in Stealer Can Steal These Things : |
 | ----------------------------------------------------------- |
-| Chrome Browser |
-| WiFi |
+| Chrome Browser (Saved Password) |
+| WiFi (Saved Password) |
+| Chrome Cookies (Login Data, Cookies, History) |
+| Firefox Cookies (cookies.sqlite) |
 #### Note: Custom Stealer is Coded, does not relies on LaZagne
+
+- [x] Grabs & Send Useful Information of Victim's Device
+
+| These Things are Grabbed & Sended: |
+| -----------------------------------|
+| Operating System |
+| Computer Name    |
+| User Name |
+| Public IPv4 |
 
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
