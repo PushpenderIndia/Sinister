@@ -294,11 +294,10 @@ Result will be displayed on the Command prompt after every 10 seconds
 
 singhpushpender250@gmail.com 
 
-## Save a Hacker from starvation 
-![](/img/request.jpg)
+## Buy Me A Coffee
 
-- [ ] paypal Me, Even 1 dollar of donation would be a great help :)
-- [ ] paypal Address: <a href="https://paypal.me/anonyindia">https://paypal.me/anonyindia</a>
-- [ ] paypal Email Address: singhpushpender250@gmail.com
+* Support my Open Source projects by making Donation, It really motivates me to work on more projects
+* PayPal Address: https://paypal.me/anonyindia
+* PayPal Email: `singhpushpender250@gmail.com`
 
 ## More Features Coming Soon...
