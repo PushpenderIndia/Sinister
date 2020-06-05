@@ -102,6 +102,9 @@ $ bash installer_linux.sh
     * Select Path to : C:/Python37-32
     ### So that the python is installed in this path (Inside Wine) : ~/.wine/drive_c/Python37-32
 
+# If you are getting any errors while executing installer_linux.sh, try to install using installer_linux.py
+$ python3 installer_linux.py
+
 $ chmod +x technowgen.py
 $ python3 technowgen.py --help
 
