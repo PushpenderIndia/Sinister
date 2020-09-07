@@ -12,7 +12,7 @@ def update_client_version(version):
 
 def main():
     try:
-        version = urlopen("https://raw.githubusercontent.com/Technowlogy-Pushpender/technowlogger/master/version.txt").read()
+        version = urlopen("https://raw.githubusercontent.com/PushpenderIndia/technowlogger/master/version.txt").read()
     except Exception as e:
         print("[!] Unable to Fletch Origin version.txt")
         print("[!] Please Check Your Internet Connection!")
@@ -28,7 +28,7 @@ def main():
 
 if __name__ == '__main__':
     print(banners.get_banner())
-    print("\t\tAuthor: Pushpender | Website: technowlogy.tk\n")
+    print("\t\tAuthor: Pushpender | Github: github.com/PushpenderIndia\n")
     print("[*] Welcome to Technowlogger's Auto Updater")
     print("[++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++]")
     print("[*] Please Note : Git must be installed in order to use \"updater.py\"")
