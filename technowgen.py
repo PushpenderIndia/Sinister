@@ -369,7 +369,7 @@ if __name__ == '__main__':
 
         else:
             print(f"\n{RED}[!] Failed To Generate Your Payload :(, Please Try Again!\n")
-            print(f"\n{GREEN}[:D] Please Contact us on https://github.com/Technowlogy-Pushpender/technowlogger\n")                  
+            print(f"\n{GREEN}[:D] Please Contact us on https://github.com/PushpenderIndia/technowlogger\n")                  
     
     except KeyboardInterrupt:        
         exit_greet()
