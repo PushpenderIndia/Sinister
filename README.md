@@ -128,7 +128,7 @@ $ cd technowlogger
 # Installing dependencies
 $ python -m pip install -r requirements.txt
 
-# Open technowgen.py in Text editor and Configure Line 12 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
+# Open technowgen.py in Text editor and Configure Line 16 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
 
 # Getting Help Menu
 $ python technowgen.py --help
