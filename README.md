@@ -42,7 +42,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Creates Executable Binary With Zero Dependencies
 - [x] Create less size ~ 5mb payload with advance functionality
 - [x] Obfusticate the Payload before Generating it, hence Bypassing few more antivirus
-- [x] Generated Payload is Encryted with base64, hence makes extremely difficult to reverse engineer the payload
+- [x] Generated Payload is Encoded with base64, hence makes extremely difficult to reverse engineer the payload
 - [x] Function to Kill Antivirus on Victim PC and tries to disable the security
 - [x] Awesome Colourful Interface to generate payload
 - [x] On Attacker Side: While Creating Payload, Script Automatically Detects Missing Dependencies & Installs Them
