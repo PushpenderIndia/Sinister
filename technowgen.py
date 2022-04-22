@@ -49,9 +49,9 @@ def get_python_pyinstaller_path():
             python_path = subprocess.check_output("which pyinstaller.exe", shell=True)
 
         python_path = str(python_path).split('\'')[1]
-        python_path = python_path.replace("\\n", "")
+        python_path = python_path.split("\\n")[0]
         python_path = python_path.replace("\\r", "")
-        python_path = python_path.replace("\\\\", "/")  
+        python_path = python_path.replace("\\\\", "/") 
     except Exception:
         python_path = "UnableToFind"
 
