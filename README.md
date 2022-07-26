@@ -72,6 +72,14 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 
 - [x] If your payload is unable to execute, then specify --debug to run exe on foreground with CMD
 
+## Important
+On **30 May 2022**, Google has **removed less secure apps feature**, so instead of Gmail Password:
+- Enable 2FA on your attacker gmail
+- Create App Specific Password
+- Use that `app specific password`, while creating payload. 
+- How to Create App Specific Password: [Click Here](https://support.google.com/mail/answer/185833?hl=en) 
+
+
 ## Tested On
 [![Kali)](https://www.google.com/s2/favicons?domain=https://www.kali.org/)](https://www.kali.org) **Kali Linux - ROLLING EDITION**
 
