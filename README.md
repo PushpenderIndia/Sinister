@@ -13,7 +13,7 @@
   <a href="https://github.com/PushpenderIndia/technowhorse/releases">
     <img src="https://img.shields.io/badge/Release-2.1-blue.svg">
   </a>
-    <a href="https://github.com/PushpenderIndia/technowhorse">
+  <a href="https://github.com/PushpenderIndia/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
   </a>
 </p>
