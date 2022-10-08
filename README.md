@@ -305,13 +305,39 @@ Result will be displayed on the Command prompt after every 10 seconds
    * Reboot your system and then delete the evil file stored this this below path
    * Destination Path, where Keylogger is stored : **~/.config/xnput**
 
-## Contribute
+## Contributors
 
-* All Contributors are welcome, this repo needs contributors who will improve this tool to make it best.
+- Dedicated Contributors List: [Contributors](CONTRIBUTORS.md)
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<table>
+<tr>
+
+<td align="center">
+    <a href="https://github.com/PushpenderIndia">
+        <kbd><img src="https://avatars3.githubusercontent.com/PushpenderIndia?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>Pushpender Singh</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/thorse/commits?author=PushpenderIndia" title="Code"> :computer: </a> 
+</td>
+
+</tr>
+</tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Contributions of any kind welcome!
+
+>    NOTE: If you should be on the list of contributors but we forgot you, then do let us know!
 
 ## TODO
-
+- [ ] Suggest your own feature
 - [ ] Add New features
 - [ ] Contribute GUI Version
 
-## More Features Coming Soon...
