@@ -324,6 +324,30 @@ Result will be displayed on the Command prompt after every 10 seconds
     <a href="https://github.com/PushpenderIndia/thorse/commits?author=PushpenderIndia" title="Code"> :computer: </a> 
 </td>
 
+<td align="center">
+    <a href="https://github.com/yathomasi">
+        <kbd><img src="https://avatars3.githubusercontent.com/yathomasi?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>Thomas Kunwar</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/thorse/commits?author=yathomasi" title="Code"> :computer: </a> 
+</td>
+
+<td align="center">
+    <a href="https://github.com/krasnova19">
+        <kbd><img src="https://avatars3.githubusercontent.com/krasnova19?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>krasnova19</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/thorse/commits?author=krasnova19" title="Code"> :computer: </a> 
+</td>
+
+<td align="center">
+    <a href="https://github.com/sarchish7">
+        <kbd><img src="https://avatars3.githubusercontent.com/sarchish7?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>sarchish7</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/thorse/commits?author=sarchish7" title="Code"> :computer: </a> 
+</td>
+
 </tr>
 </tr>
 </table>
