@@ -53,7 +53,6 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Undetectable
 - [x] Persistence
 - [x] Can receive Keylogs in any email provider such as GMAIL, YAHOO, OUTLOOK, Custom SMTP.
-- [x] Compatible with Gmail, Yahoo, Outlook and custom SMTP servers.
 
 * SMTP Server/ Port
 
