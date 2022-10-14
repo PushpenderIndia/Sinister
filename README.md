@@ -192,7 +192,7 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yaho
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
 
-[![commands for windows ](https://i.vimeocdn.com/video/1527080156-d23b4786d08f4838a64ea38d3ba3d51b910eecceb16de3ca5c8664180b03e4c3-d_1920x1080)](https://vimeo.com/user186787151)
+[![commands for windows ](https://i.vimeocdn.com/video/1527080156-d23b4786d08f4838a64ea38d3ba3d51b910eecceb16de3ca5c8664180b03e4c3-d_1920x1080)](https://vimeo.com/760386042)
 
 ## How to Update
 
