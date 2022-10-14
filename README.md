@@ -52,6 +52,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Notify New Victim Via Email
 - [x] Undetectable
 - [x] Persistence
+- [x] Email Validation before Payload Generation.
 - [x] Can receive Keylogs in any email provider such as GMAIL, YAHOO, OUTLOOK, Custom SMTP.
 
 * SMTP Server/ Port
@@ -190,6 +191,8 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yaho
 
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
+
+https://vimeo.com/user186787151
 
 ## How to Update
 
