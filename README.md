@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
   <a href="https://github.com/PushpenderIndia/technowhorse/releases">
-    <img src="https://img.shields.io/badge/Release-2.1-blue.svg">
+    <img src="https://img.shields.io/badge/Release-2.2-blue.svg">
   </a>
   <a href="https://github.com/PushpenderIndia/technowhorse">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
@@ -52,6 +52,7 @@ THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. YOU MAY USE THIS
 - [x] Notify New Victim Via Email
 - [x] Undetectable
 - [x] Persistence
+- [x] Email Credentials Validation before Payload Generation.
 - [x] Can receive Keylogs in any email provider such as GMAIL, YAHOO, OUTLOOK, Custom SMTP.
 
 * SMTP Server/ Port
@@ -190,6 +191,8 @@ $ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yaho
 
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
+
+[![commands for windows ](https://i.vimeocdn.com/video/1527080156-d23b4786d08f4838a64ea38d3ba3d51b910eecceb16de3ca5c8664180b03e4c3-d_1920x1080)](https://vimeo.com/user186787151)
 
 ## How to Update
 
@@ -377,6 +380,14 @@ Result will be displayed on the Command prompt after every 10 seconds
         <sub><b>sarchish7</b></sub>
     </a><br />
     <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=sarchish7" title="Code"> :computer: </a> 
+</td>
+
+<td align="center">
+    <a href="https://github.com/chiragcode11">
+        <kbd><img src="https://avatars3.githubusercontent.com/chiragcode11?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>chiragcode11</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=chiragcode11" title="Code"> :computer: </a> 
 </td>
 
 </tr>
