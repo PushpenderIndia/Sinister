@@ -361,11 +361,11 @@ Result will be displayed on the Command prompt after every 10 seconds
 </td>
 
 <td align="center">
-    <a href="https://github.com/sarchish7">
-        <kbd><img src="https://avatars3.githubusercontent.com/sarchish7?size=400" width="100px;" alt=""/></kbd><br />
-        <sub><b>sarchish7</b></sub>
+    <a href="https://github.com/archish5">
+        <kbd><img src="https://avatars3.githubusercontent.com/archish5?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>sarchish5</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=sarchish7" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=archish5" title="Code"> :computer: </a> 
 </td>
 
 <td align="center">
