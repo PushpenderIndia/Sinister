@@ -24,7 +24,7 @@
              
                         This small python script can do really awesome work.
 
-TechNowLogger is Keylogger Generator for Windows/Linux, which sends key-logs & screenshot via email with other juicy target info written in Python 3.
+Sinister is Keylogger Generator for Windows/Linux, which sends key-logs & screenshot via email with other juicy target info written in Python 3.
 
 ## Disclaimer
 <p align="center">
