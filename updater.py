@@ -14,7 +14,7 @@ def main():
     try:
         version = urlopen("https://raw.githubusercontent.com/PushpenderIndia/Sinister/master/version.txt").read()
     except Exception as e:
-        print("[!] Unable to Fletch Origin version.txt")
+        print("[!] Unable to Fetch Origin version.txt")
         print("[!] Please Check Your Internet Connection!")
         print("[*] Exiting ...")
         quit()
