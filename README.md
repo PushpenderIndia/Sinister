@@ -337,7 +337,7 @@ Result will be displayed on the Command prompt after every 10 seconds
         <kbd><img src="https://avatars3.githubusercontent.com/PushpenderIndia?size=400" width="100px;" alt=""/></kbd><br />
         <sub><b>Pushpender Singh</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/thorse/commits?author=PushpenderIndia" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=PushpenderIndia" title="Code"> :computer: </a> 
 </td>
 
 <td align="center">
@@ -345,7 +345,7 @@ Result will be displayed on the Command prompt after every 10 seconds
         <kbd><img src="https://avatars3.githubusercontent.com/yathomasi?size=400" width="100px;" alt=""/></kbd><br />
         <sub><b>Thomas Kunwar</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=yathomasi" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=yathomasi" title="Code"> :computer: </a> 
 </td>
 
 <td align="center">
@@ -353,7 +353,7 @@ Result will be displayed on the Command prompt after every 10 seconds
         <kbd><img src="https://avatars3.githubusercontent.com/krasnova19?size=400" width="100px;" alt=""/></kbd><br />
         <sub><b>krasnova19</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=krasnova19" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=krasnova19" title="Code"> :computer: </a> 
 </td>
 
 <td align="center">
@@ -361,7 +361,7 @@ Result will be displayed on the Command prompt after every 10 seconds
         <kbd><img src="https://avatars3.githubusercontent.com/archish5?size=400" width="100px;" alt=""/></kbd><br />
         <sub><b>sarchish5</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=archish5" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=archish5" title="Code"> :computer: </a> 
 </td>
 
 <td align="center">
@@ -369,7 +369,15 @@ Result will be displayed on the Command prompt after every 10 seconds
         <kbd><img src="https://avatars3.githubusercontent.com/chiragcode11?size=400" width="100px;" alt=""/></kbd><br />
         <sub><b>chiragcode11</b></sub>
     </a><br />
-    <a href="https://github.com/PushpenderIndia/technowlogger/commits?author=chiragcode11" title="Code"> :computer: </a> 
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=chiragcode11" title="Code"> :computer: </a> 
+</td>
+
+<td align="center">
+    <a href="https://github.com/C4RR0T02">
+        <kbd><img src="https://avatars3.githubusercontent.com/C4RR0T02?size=400" width="100px;" alt=""/></kbd><br />
+        <sub><b>C4RR0T02</b></sub>
+    </a><br />
+    <a href="https://github.com/PushpenderIndia/Sinister/commits?author=C4RR0T02" title="Code"> :computer: </a> 
 </td>
 
 </tr>
