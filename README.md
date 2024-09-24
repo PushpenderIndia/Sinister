@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/PushpenderIndia/technowlogger/blob/master/img/technowlogger-logo.png" alt="Sinister Logo" width=200 height=200/>
+  <img src="https://github.com/PushpenderIndia/Sinister/blob/master/img/technowlogger-logo.png" alt="Sinister Logo" width=200 height=200/>
 </p>
 
 <h1 align="center">Sinister</h1>
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-BSD%203-lightgrey.svg">
   </a>
   <a href="https://github.com/PushpenderIndia/Sinister/releases">
-    <img src="https://img.shields.io/badge/Release-2.3-blue.svg">
+    <img src="https://img.shields.io/badge/Release-2.4-blue.svg">
   </a>
   <a href="https://github.com/PushpenderIndia/Sinister">
     <img src="https://img.shields.io/badge/Open%20Source-%E2%9D%A4-brightgreen.svg">
